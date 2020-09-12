@@ -1,12 +1,12 @@
 import React from 'react'
 import Carousel from 'react-bootstrap/Carousel'
-import header1 from '../img/header-1.jpg'
-import header2 from '../img/header-2.jpg'
-import header3 from '../img/header-3.jpg'
-import header4 from '../img/header-4.jpg'
-import header5 from '../img/header-5.jpg'
-import header6 from '../img/header-6.jpg'
-import header7 from '../img/header-7.jpg'
+import header1 from '../../img/header-1.jpg'
+import header2 from '../../img/header-2.jpg'
+import header3 from '../../img/header-3.jpg'
+import header4 from '../../img/header-4.jpg'
+import header5 from '../../img/header-5.jpg'
+import header6 from '../../img/header-6.jpg'
+import header7 from '../../img/header-7.jpg'
 
 const Slider = () => {
   return (

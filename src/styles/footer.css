@@ -1,5 +1,6 @@
 .footer {
+  margin-top: 4em;
   background: rgb(248, 185, 195);;
   position: absolute;
-  min-height: 5em;
+  min-height: 10em;
 }

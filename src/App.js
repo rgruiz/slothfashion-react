@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
 import HomePage from './pages/HomePage'
+import NewPostPage from './pages/NewPostPage'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 
 class App extends React.Component {
@@ -9,6 +9,7 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/newpost" component={NewPostPage} />
         </Switch>
       </BrowserRouter>
     );

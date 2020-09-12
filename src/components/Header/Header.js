@@ -8,7 +8,7 @@ class Header extends React.Component {
     return (
       <Navbar bg="light" expand="md" className="padding-nav border-nav" variant="light">
         <Navbar.Brand href="/">
-          <img src={require("../img/LOGO-NEGRO.png")} className='header-logo' alt="logo"></img>
+          <img src={require("../../img/LOGO-NEGRO.png")} className='header-logo' alt="logo"></img>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" bsPrefix="no-margin-top navbar-toggler" />
         <Navbar.Collapse id="basic-navbar-nav">

@@ -6,7 +6,7 @@ const Layout = ({ input, previews, dropzoneProps, files, extra: { maxFiles } }) 
   return (
     <div>
 
-      <div {...dropzoneProps} style={{overflow: 'auto'}}>
+      <div {...dropzoneProps} style={{ overflow: 'auto' }}>
         {previews}
         {files.length < maxFiles && input}
       </div>
@@ -15,21 +15,34 @@ const Layout = ({ input, previews, dropzoneProps, files, extra: { maxFiles } }) 
   )
 }
 
-const CustomLayout = () => {
-  const getUploadParams = () => ({ url: 'https://httpbin.org/post' }) //a cambiar --> que el submit se bloquee?
-
+const CustomLayout = (props) => {
+  /* const getUploadParams = () => ({ url: 'http://localhost:5000/add', header: 'Access-Control-Allow-Origin'}) //a cambiar --> que el submit se bloquee?
+ */
   const handleSubmit = (files, allFiles) => {
+    alert("HANDLESUBMIT IMAGE")
+    var lista = []
+    files.map(f => lista.push(f));
+
+    props.addFiles(lista);
+
     console.log(files.map(f => f.meta))
     allFiles.forEach(f => f.remove())
   }
 
+  const handleChangeStatus = ({ meta, file }, status) => {
+    //a ser modificado usando el status. deberia modificar los datos de la lista en postform
+    console.log(status, meta, file);
+    props.addFiles(file);
+  }
+
   return (
     <Dropzone
-      getUploadParams={getUploadParams}
+      /* getUploadParams={getUploadParams} */
       LayoutComponent={Layout}
       onSubmit={handleSubmit}
       inputContent="Arrastrá las fotos acá"
       accept="image/*"
+      onChangeStatus={handleChangeStatus}
     />
   )
 }

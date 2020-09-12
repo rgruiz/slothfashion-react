@@ -43,6 +43,7 @@ class Home extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
+    console.log(this.state)
 
   }
 
@@ -52,14 +53,18 @@ class Home extends React.Component {
     })
   }
 
+  addFiles = (files) => {
+    this.setState({...this.state, files: files})
+  }
+
   render() {
     return (
-      <Container>
+      <Container fluid>
         <h1 className='title-background title text-center'>Editar publicación</h1>
-        <Row>
-          <Col>
+        <Row className='flex-box justify-content-around'>
+          <Col xs={12} sm={10}>
             <ValidationForm onSubmit={this.handleSubmit} className="post_form">
-              <Form>
+              <Form encType='multipart/form-data'>
                 <Form.Row>
                   <Form.Group as={Col} xs='12' controlId="description">
                     <Form.Label>Descripción</Form.Label>
@@ -112,7 +117,7 @@ class Home extends React.Component {
                       onChange={this.handleChange}
                     /> */}
 
-                    <CustomLayout />
+                    <CustomLayout addFiles={this.addFiles} />
 
                   </Form.Group>
                 </Form.Row>

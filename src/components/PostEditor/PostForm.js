@@ -54,10 +54,10 @@ class Home extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container fluid>
         <h1 className='title-background title text-center'>Editar publicación</h1>
-        <Row>
-          <Col>
+        <Row className='flex-box justify-content-around'>
+          <Col xs={12} sm={10}>
             <ValidationForm onSubmit={this.handleSubmit} className="post_form">
               <Form>
                 <Form.Row>

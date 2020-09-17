@@ -128,16 +128,16 @@ class Home extends React.Component {
                       onChange={this.handleChange}
                     /> */}
                     <Row>
-                      <Col xs={12} sm={6}>
+                      <Col xs={12} sm={6} lg={3}>
                         <CustomLayout addFiles={this.addFiles} removeFiles={this.removeFiles} pos='1' />
                       </Col>
-                      <Col xs={12} sm={6}>
+                      <Col xs={12} sm={6} lg={3}>
                         <CustomLayout addFiles={this.addFiles} removeFiles={this.removeFiles} pos='2' />
                       </Col>
-                      <Col xs={12} sm={6}>
+                      <Col xs={12} sm={6} lg={3}>
                         <CustomLayout addFiles={this.addFiles} removeFiles={this.removeFiles} pos='3' />
                       </Col>
-                      <Col xs={12} sm={6}>
+                      <Col xs={12} sm={6} lg={3}>
                         <CustomLayout addFiles={this.addFiles} removeFiles={this.removeFiles} pos='4' />
                       </Col>
                     </Row>

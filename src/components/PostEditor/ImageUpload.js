@@ -35,7 +35,7 @@ const CustomLayout = (props) => {
     <Dropzone
       /* getUploadParams={getUploadParams} */
       LayoutComponent={Layout}
-      inputContent="Arrastrá la fotos acá"
+      inputContent="Arrastrá la foto acá"
       accept="image/*"
       onChangeStatus={handleChangeStatus}
       maxFiles={1}

@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { Link } from 'react-router-dom'
 import CustomLayout from './ImageUpload'
+import POSTPost from '../DB connections/POSTPost'
 import '../../styles/PostForm.css'
 
 class Home extends React.Component {
@@ -17,13 +18,15 @@ class Home extends React.Component {
     };
     this.state = {
       ...this.state,
-      files: [],
       post_data: {
         description: "",
         price: "",
         tags: "",
-        images: "",
-        active: "",
+        active: false,
+        file1: "",
+        file2: "",
+        file3: "",
+        file4: "",
       }
     }
   }
@@ -43,6 +46,8 @@ class Home extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
+    POSTPost(this.state.post_data);
+
     console.log(this.state)
 
   }
@@ -53,8 +58,14 @@ class Home extends React.Component {
     })
   }
 
-  addFiles = (files) => {
-    this.setState({...this.state, files: files})
+  addFiles = (file, pos) => {
+    const filepos = "file" + pos
+    this.setState({ ...this.state, "post_data": { ...this.state.post_data, [filepos]: file } })
+  }
+
+  removeFiles = (file, pos) => {
+    const filepos = "file" + pos
+    this.setState({ ...this.state, "post_data": { ...this.state.post_data, [filepos]: "" } })
   }
 
   render() {
@@ -83,7 +94,7 @@ class Home extends React.Component {
                 <Form.Row>
                   <Form.Group as={Col} xs='10' md='4' controlId="price">
                     <Form.Label>Precio</Form.Label>
-                    <TextInputGroup name="price" id="price" 
+                    <TextInputGroup name="price" id="price"
                       value={this.state.post_data.price}
                       onChange={this.handleChange}
                       prepend={<span className="input-group-text">$</span>}
@@ -116,9 +127,20 @@ class Home extends React.Component {
                       value={this.state.post_data.images}
                       onChange={this.handleChange}
                     /> */}
-
-                    <CustomLayout addFiles={this.addFiles} />
-
+                    <Row>
+                      <Col xs={12} sm={6}>
+                        <CustomLayout addFiles={this.addFiles} removeFiles={this.removeFiles} pos='1' />
+                      </Col>
+                      <Col xs={12} sm={6}>
+                        <CustomLayout addFiles={this.addFiles} removeFiles={this.removeFiles} pos='2' />
+                      </Col>
+                      <Col xs={12} sm={6}>
+                        <CustomLayout addFiles={this.addFiles} removeFiles={this.removeFiles} pos='3' />
+                      </Col>
+                      <Col xs={12} sm={6}>
+                        <CustomLayout addFiles={this.addFiles} removeFiles={this.removeFiles} pos='4' />
+                      </Col>
+                    </Row>
                   </Form.Group>
                 </Form.Row>
                 <Form.Group>

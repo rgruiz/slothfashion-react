@@ -41,7 +41,7 @@ const POSTPost = props => {
     .catch(function (err) {
 
       if (err.response) {
-        alert("No se puede conectar con la base de datos")
+        alert(err.response.data)
       }
     }
     )

@@ -22,7 +22,7 @@ class Home extends React.Component {
         description: "",
         price: "",
         tags: "",
-        active: false,
+        active: true,
         file1: "",
         file2: "",
         file3: "",
@@ -46,8 +46,15 @@ class Home extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    POSTPost(this.state.post_data);
-
+    if (this.state.post_data.file1 === "" &&
+      this.state.post_data.file2 === "" &&
+      this.state.post_data.file3 === "" &&
+      this.state.post_data.file4 === "") {
+      alert("La publicación necesita al menos una imagen")
+    }
+    else {
+      POSTPost(this.state.post_data);
+    }
     console.log(this.state)
 
   }
@@ -143,11 +150,11 @@ class Home extends React.Component {
                     </Row>
                   </Form.Group>
                 </Form.Row>
-                <Form.Group>
+{/*                 <Form.Group>
                   <Checkbox name="active" id="active" type="checkbox" label="Activar publicación"
                     value={this.state.post_data.active}
                     onChange={this.handleChangeCheck} />
-                </Form.Group>
+                </Form.Group> */}
                 <Row className='justify-content-center'>
                   <Col xs={12} md={4}>
                     <Link to='/'>

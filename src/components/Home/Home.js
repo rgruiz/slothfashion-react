@@ -11,7 +11,7 @@ class Home extends React.Component {
 
 
   //esto se usa para cargar el boton pagar con los datos de la compra. el boton dice PAGAR por defecto.........
-/*   async componentDidMount() {
+/*    async componentDidMount() {
     const datapreferenceid = await POSTMercadoPago()
 
     const script = document.createElement("script");
@@ -22,7 +22,7 @@ class Home extends React.Component {
 
     this.div.appendChild(script);
 
-  } */
+  }  */
 
   render() {
     return (
@@ -38,7 +38,7 @@ class Home extends React.Component {
             </Col>
           </Row>
           <Row 
-          //ref={el => (this.div = el)}
+          //     ref={el => (this.div = el)}
           >
           </Row>
         </Container>

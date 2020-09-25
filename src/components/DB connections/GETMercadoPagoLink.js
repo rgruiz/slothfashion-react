@@ -1,19 +1,9 @@
 import axios from 'axios'
 import { URL_MERCADOPAGO } from '../../constants/URL'
 
-const POSTMercadoPago = props => {
-  const data = {
-    list: [
-      //esta lista deberia completarse con los datos de props de la publicacion
-      {
-        "title": "Mi pequeño pony",
-        "unit_price": 99988,
-        "quantity": 1
-      }
-    ]
-  }
+const GETMercadoPagoLink = props => {
 
-  const salida = axios.post((URL_MERCADOPAGO), data, {
+  const salida = axios.post((URL_MERCADOPAGO), props, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -33,4 +23,4 @@ const POSTMercadoPago = props => {
   return salida
 }
 
-export default POSTMercadoPago;
+export default GETMercadoPagoLink;

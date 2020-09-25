@@ -3,26 +3,29 @@ import Slider from './Slider'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
+import Button from 'react-bootstrap/Button'
 import SearchBar from '../SearchBar/SearchBar'
 import TagsPopulares from '../SearchBar/TagsPopulares'
-/* import POSTMercadoPago from '../DB connections/POSTMercadoPago' */
+import GETMercadoPagoLink from '../DB connections/GETMercadoPagoLink'
 
 class Home extends React.Component {
 
 
   //esto se usa para cargar el boton pagar con los datos de la compra. el boton dice PAGAR por defecto.........
-/*    async componentDidMount() {
-    const datapreferenceid = await POSTMercadoPago()
+    async componentDidMount() {
 
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-    script.setAttribute('data-preference-id', datapreferenceid)
-    script.setAttribute('textContent', '170578376-572012f4-6b2f-4438-a83e-7ff6d43f9b52')
+    const idPost = {idPost: 1}
 
+    const datapreferenceid = await GETMercadoPagoLink(idPost)
+
+    var script = document.createElement('a')
+    var linkText = document.createTextNode("Pagar")
+    script.appendChild(linkText)
+    script.title = "Pagar"
+    script.href = datapreferenceid
+    document.body.appendChild(script)
     this.div.appendChild(script);
-
-  }  */
+  }  
 
   render() {
     return (
@@ -37,9 +40,8 @@ class Home extends React.Component {
               <TagsPopulares />
             </Col>
           </Row>
-          <Row 
-          //     ref={el => (this.div = el)}
-          >
+          <Row>
+            <Button ref={el => (this.div = el)} className="boton-pago"></Button>
           </Row>
         </Container>
       </>

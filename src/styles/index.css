@@ -24,6 +24,14 @@ code {
   min-height: 100vh !important;
 }
 
+.boton-pago > a {
+  color: white;
+}
+
+.boton-pago > a:hover {
+  text-decoration: none;
+}
+
 /* BOOTSTRAP OVERRIDES */
 
 .btn-primary {

@@ -4,3 +4,4 @@
 const DOMAIN = 'http://localhost:4000'
 
 export const URL_ADDPOST = DOMAIN + '/addpost'
+export const URL_MERCADOPAGO = DOMAIN + '/mercadopago'

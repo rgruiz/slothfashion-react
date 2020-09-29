@@ -12,7 +12,7 @@ class Home extends React.Component {
 
 
   //esto se usa para cargar el boton pagar con los datos de la compra. el boton dice PAGAR por defecto.........
-    async componentDidMount() {
+/*     async componentDidMount() {
 
     const idPost = {idPost: 1}
 
@@ -26,23 +26,23 @@ class Home extends React.Component {
     document.body.appendChild(script)
     this.div.appendChild(script);
   }  
-
+ */
   render() {
     return (
       <>
         <Slider />
         <Container fluid>
           <Row>
-            <Col xs={6}>
+            <Col xs={6} className='mt-3'>
               <SearchBar />
             </Col>
-            <Col xs={6}>
+{/*             <Col xs={6}>
               <TagsPopulares />
-            </Col>
+            </Col> */}
           </Row>
-          <Row>
+{/*           <Row>
             <Button ref={el => (this.div = el)} className="boton-pago"></Button>
-          </Row>
+          </Row> */}
         </Container>
       </>
     )

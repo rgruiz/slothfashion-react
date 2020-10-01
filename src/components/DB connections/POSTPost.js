@@ -43,6 +43,7 @@ const POSTPost = props => {
 
       if (err.response) {
         alert(err.response.data)
+        Promise.reject(err.response.data)
       }
     }
     )

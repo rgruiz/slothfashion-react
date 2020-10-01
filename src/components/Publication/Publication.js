@@ -10,7 +10,7 @@ import '../../styles/Publication.css'
 class Publication extends React.Component {
 
     state = {
-        postId: 10
+        postId: this.props.location.state.postId
     }
 
     async componentDidMount() {
@@ -31,9 +31,10 @@ class Publication extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         if (this.state.post !== undefined) {
             return (
-                <Container>
+                <Container className="mt-4">
                     <Row>
                         <Col xs={12} lg={7}>
                             <Row className='mb-3'>
@@ -65,7 +66,7 @@ class Publication extends React.Component {
                             </Row>
                         </Col>
                         <Col xs={12} lg={5}>
-                            <Comment comments={this.state.post.comments}/>
+                            <Comment comments={this.state.post.comments} />
                         </Col>
                     </Row>
                 </Container>

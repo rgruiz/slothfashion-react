@@ -1,11 +1,11 @@
 import axios from 'axios'
-import { URL_GETPOSTBYID } from '../../constants/URL'
+import { URL_FILTERTAGS } from '../../constants/URL'
 
-const POSTPost = props => {
+const FilterTags = props => {
 
-  const finalurl = URL_GETPOSTBYID + props
+  const finalurl = URL_FILTERTAGS + props
 
-  let postData = new Promise(function (resolve, reject) {
+  let tags = new Promise(function (resolve, reject) {
     let salida = axios.get((finalurl), {
       method: 'GET',
       headers: {
@@ -31,8 +31,8 @@ const POSTPost = props => {
     }
   })
 
-  return postData
+  return tags
 
 }
 
-export default POSTPost;
+export default FilterTags;

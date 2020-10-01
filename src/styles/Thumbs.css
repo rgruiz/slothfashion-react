@@ -1,0 +1,16 @@
+/* ver min-height en otros tamaños de pantalla */
+.thumb {
+  max-width: 100%;
+  min-height: 20em;
+  overflow: hidden;
+  object-fit: cover;
+
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a > .botonthumb:hover {
+  text-decoration: none !important;
+}

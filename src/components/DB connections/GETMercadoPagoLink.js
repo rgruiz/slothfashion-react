@@ -17,6 +17,7 @@ const GETMercadoPagoLink = props => {
     .catch(function (err) {
       if (err.response) {
         alert("Hubo un error conectándose a MercadoPago")
+        Promise.reject(err.response)
       }
     })
 

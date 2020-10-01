@@ -35,7 +35,7 @@ class Publication extends React.Component {
             return (
                 <Container>
                     <Row>
-                        <Col xs={12} md={7}>
+                        <Col xs={12} lg={7}>
                             <Row className='mb-3'>
                                 <Col>
                                     <ImgPost images={this.state.post.images} />
@@ -64,7 +64,7 @@ class Publication extends React.Component {
                                 </Col>
                             </Row>
                         </Col>
-                        <Col xs={12} md={5}>
+                        <Col xs={12} lg={5}>
                             <Comment comments={this.state.post.comments}/>
                         </Col>
                     </Row>

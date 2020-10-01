@@ -1,39 +1,41 @@
-import React from 'react';
-import { Row, Table } from 'react-bootstrap';
-import { Col } from 'react-bootstrap';
-import Container from 'react-bootstrap/Container';
+import React from 'react'
+import { Row, Col, Table } from 'react-bootstrap'
+import { Avatar } from 'rsuite'
 
-class Comment extends React.Component {
+const Comment = props => {
 
-  render() {
-    return (
-      <Row>
-        <h3 className = 'justify-content-center'>Comentarios</h3>
-          <Table striped bordered hover  className = 'comment'>
-            <tbody>
-              <tr>
-                <td>Comentario</td>
-              </tr>
-              <tr>
-                <td>Comentario</td>
-              </tr>
-                <tr>
-                <td>Comentario</td>
-              </tr>
-                <tr>
-                <td>Comentario</td>
-              </tr>
-                <tr>
-                <td>Comentario</td>
-              </tr>
-                <tr>
-                <td>Comentario</td>
-              </tr>
-            </tbody>
-          </Table>
-      </Row>
-    )
-  }
+  console.log(props.comments)
+
+  return (
+    <>
+      <Col>
+        <h3 className='justify-content-center'>Comentarios</h3>
+      </Col>
+      <Table striped bordered hover className='comment'>
+        <tbody>
+          {props.comments.map((comment) => <tr>
+            <td><Row>
+              <Col>
+                <Row className="d-flex align-items-center text-muted">
+                  <Col>
+                    <Avatar style={{ background: '#7B1FA2' }}>{comment.nombre.slice(0, 2)}</Avatar> {comment.nombre}
+                  </Col>
+                </Row>
+              </Col>
+              <Col className="d-flex align-items-center text-muted"> {comment.fechacomentario} </Col>
+            </Row>
+              <Row>
+                <Col className="comment-text mt-2">
+                  {comment.comentario}
+                </Col>
+              </Row>
+            </td>
+          </tr>
+          )}
+        </tbody>
+      </Table>
+    </>
+  )
 }
 
 export default Comment

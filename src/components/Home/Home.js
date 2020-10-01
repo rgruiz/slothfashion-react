@@ -16,15 +16,17 @@ class Home extends React.Component {
 
   onTagsChange = (tagslist) => {
     var tags = ""
-    tagslist.map((tag) => {
-      if (tags === "") {
-        tags += tag.value
-      }
-      else {
-        tags += " " + tag.value
-      }
-    })
-    this.setState({...this.state, tags: tags})
+    if (tagslist !== null) {
+      tagslist.map((tag) => {
+        if (tags === "") {
+          tags += tag.value
+        }
+        else {
+          tags += " " + tag.value
+        }
+      })
+    }
+    this.setState({ ...this.state, tags: tags })
   }
 
   render() {

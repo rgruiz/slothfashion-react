@@ -4,6 +4,52 @@
 
 .comment{
     Border: 1px solid black;
-    margin: 0 2em;
 }
 
+.comment-text {
+    font-size: 1.1em;
+}
+
+.postDesc {
+    font-size: 1.5em;
+}
+
+.postPrice {
+    font-size: 1.5em;
+}
+
+.thumbnail {
+    background: none;
+    outline: none
+}
+
+.thumbnail:hover {
+    background: none;
+    outline: none;
+    -webkit-box-shadow: 6px 7px 5px -1px rgba(36,36,36,0.74);
+    -moz-box-shadow: 6px 7px 5px -1px rgba(36,36,36,0.74);
+    box-shadow: 6px 7px 5px -1px rgba(36,36,36,0.74);
+}
+
+.thumbnail:focus{
+    background:none;
+    outline: none;
+    -webkit-box-shadow: 6px 7px 5px -1px rgba(36,36,36,0.74);
+    -moz-box-shadow: 6px 7px 5px -1px rgba(36,36,36,0.74);
+    box-shadow: 6px 7px 5px -1px rgba(36,36,36,0.74);
+}
+
+.thumbnail:active{
+    background:none;
+    outline: none
+}
+
+.hover-zoom {
+    transition: all 0.3s ease 0s;
+    width: 100%;
+}
+
+.hover-zoom:hover {
+    transform: scale(1.1);
+}
+  

@@ -25,11 +25,11 @@ code {
 }
 
 .boton-pago > a {
-  color: white;
+  color: white !important;
 }
 
 .boton-pago > a:hover {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 /* BOOTSTRAP OVERRIDES */

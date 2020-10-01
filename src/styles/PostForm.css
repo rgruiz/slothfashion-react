@@ -7,8 +7,7 @@
   padding-top: 1em;
   padding-bottom: 1em;
   font-size: 3.5em;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #000;
+  text-shadow: -1px 1px black, 1px 1px black, -1px -1px black, 1px -1px black;
 }
 
 .title-background {

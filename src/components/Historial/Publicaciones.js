@@ -1,6 +1,5 @@
 import React from 'react';
 import { Row, Table } from 'react-bootstrap';
-import Publication from '../Publication/Publication';
 
 class Publicaciones extends React.Component {
 

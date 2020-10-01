@@ -35,7 +35,8 @@ const POSTPost = props => {
     }
   }).then(res => {
     if (res.status === 200) {
-      return alert("La publicación fue guardada con éxito")
+      alert("La publicación fue guardada con éxito")
+      return window.location = '/historial'
     }
   })
     .catch(function (err) {

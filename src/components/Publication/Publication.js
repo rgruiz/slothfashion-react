@@ -1,47 +1,77 @@
-import React from 'react';
-import { Row, Col, Button, Container } from 'react-bootstrap';
-import image from '../../img/header-1.jpg'
-import Comment from './Comment';
-import Style from '../../styles/Publication.css'
+import React from 'react'
+import { Row, Col, Container, Button } from 'react-bootstrap'
+import ImgPost from './ImgPost'
+import Comment from './Comment'
+import GETPostByID from '../DB connections/GETPostByID'
+import DisplayTags from './DisplayTags'
+import GETMercadoPagoLink from '../DB connections/GETMercadoPagoLink'
+import '../../styles/Publication.css'
 
 class Publication extends React.Component {
 
+    state = {
+        postId: 10
+    }
+
+    async componentDidMount() {
+        const postData = await GETPostByID(this.state.postId)
+        this.setState({ ...this.state, post: postData })
+
+        const idPost = { idPost: postData.post.idpublicacion }
+
+        const datapreferenceid = await GETMercadoPagoLink(idPost)
+
+        var script = document.createElement('a')
+        var linkText = document.createTextNode("Comprar")
+        script.appendChild(linkText)
+        script.title = "Comprar"
+        script.href = datapreferenceid
+        document.body.appendChild(script)
+        this.div.appendChild(script);
+    }
 
     render() {
-        return (
-            <Container fluid>
-                <Row >
-                    <Col xs = {8}>
-                        <Row className = 'mb-3'>
-                            <Col xs = {12} className = 'imgPubli'>
-                                <img src = {image} className = 'imgPubli'/>
-                            </Col>
-                        </Row>
-                        <Row className = 'mb-3'>
-                            <Col>
-                                Esta es la descripcion del producto.
-                            </Col>
-                        </Row>
-                        <Row className = 'mb-5'><Col>#hola #test #ropa #moda #belleza #style #jean #camisa #HelloWorld</Col></Row>
-                        <Row>
-                            <Col>
-                                <label>
-                                    $4600
-                                </label>
-                            </Col>
-                            <Col>
-                                <Button>                                
-                                    comprar
-                                </Button>
-                            </Col>                                                        
-                        </Row>
-                    </Col>
-                    <Col xs = {4} >
-                    <Comment />
-                    </Col>
-                </Row>
-            </Container>
-        )
+        if (this.state.post !== undefined) {
+            return (
+                <Container>
+                    <Row>
+                        <Col xs={12} md={7}>
+                            <Row className='mb-3'>
+                                <Col>
+                                    <ImgPost images={this.state.post.images} />
+                                </Col>
+                            </Row>
+                            <Row className='mb-3'>
+                                <Col>
+                                    <div className="postDesc">
+                                        {this.state.post.post.descripcion}
+                                    </div>
+                                </Col>
+                            </Row>
+                            <Row className='mb-5'>
+                                <Col>
+                                    <DisplayTags tags={this.state.post.tags} />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <div className="postPrice">
+                                        $ {this.state.post.post.precio}
+                                    </div>
+                                </Col>
+                                <Col xs={12} className="mt-3">
+                                    <Button className="btn-block boton-pago" ref={el => (this.div = el)}></Button>
+                                </Col>
+                            </Row>
+                        </Col>
+                        <Col xs={12} md={5}>
+                            <Comment comments={this.state.post.comments}/>
+                        </Col>
+                    </Row>
+                </Container>
+            )
+        }
+        else return (<></>)
     }
 }
 

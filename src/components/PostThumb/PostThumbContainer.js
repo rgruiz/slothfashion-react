@@ -7,11 +7,14 @@ class Home extends React.Component {
 
   state = {
     ...this.state,
-    posts: ""
+    posts: "",
+    error: "No hay resultados"
   }
 
   async componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
+/*      no esta andando bien borrar todas las tags, porque dejaria la ultima busqueda. quizas se podria cambiar 
+     para que cuando se borre todo se muestre algo por defecto (tags = "") */
+    if (prevProps !== this.props && this.props !== null && this.props.tags !== "") {
       const filter = {
         data: {
           ascdesc: this.props.orderedby,
@@ -25,7 +28,7 @@ class Home extends React.Component {
   }
 
   render() {
-    if (this.state.posts !== "") {
+    if (this.state.posts !== "" && this.state.posts) {
       return (
         <>
           <Container fluid>
@@ -40,7 +43,7 @@ class Home extends React.Component {
         </>
       )
     }
-    else return (<></>)
+    else return (<>{this.state.error}</>)
   }
 }
 

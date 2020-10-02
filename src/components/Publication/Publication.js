@@ -3,7 +3,7 @@ import { Row, Col, Container, Button } from 'react-bootstrap'
 import ImgPost from './ImgPost'
 import Comment from './Comment'
 import GETPostByID from '../DB connections/GETPostByID'
-import DisplayTags from './DisplayTags'
+import DisplayTags from '../DisplayTags/DisplayTags'
 import GETMercadoPagoLink from '../DB connections/GETMercadoPagoLink'
 import '../../styles/Publication.css'
 

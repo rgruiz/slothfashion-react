@@ -37,7 +37,7 @@ class Home extends React.Component {
           <Container fluid>
             <Row>
               {this.state.posts.map((post) => {
-                return (<Col xs={12} sm={4} md={3}>
+                return (<Col xs={12} sm={6} lg={4} xl={3}>
                   <PostThumb data={post} />
                 </Col>)
               })}

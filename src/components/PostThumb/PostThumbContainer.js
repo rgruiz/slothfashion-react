@@ -8,12 +8,12 @@ class Home extends React.Component {
   state = {
     ...this.state,
     posts: "",
-    error: "No hay resultados"
+    error: "No hay resultados. Por favor realizá una búsqueda y eligiendo la etiqueta deseada de la lista."
   }
 
   async componentDidUpdate(prevProps) {
-/*      no esta andando bien borrar todas las tags, porque dejaria la ultima busqueda. quizas se podria cambiar 
-     para que cuando se borre todo se muestre algo por defecto (tags = "") */
+    /*      no esta andando bien borrar todas las tags, porque dejaria la ultima busqueda. quizas se podria cambiar 
+         para que cuando se borre todo se muestre algo por defecto (tags = "") */
     if (prevProps !== this.props && this.props !== null && this.props.tags !== "") {
       const filter = {
         data: {
@@ -25,6 +25,9 @@ class Home extends React.Component {
       const posts = await FilterPosts(filter)
       this.setState({ ...this.state, posts: posts })
     }
+    if (prevProps !== this.props && this.props.tags === "") {
+      this.setState({ ...this.state, posts: "" })
+    }
   }
 
   render() {
@@ -35,7 +38,7 @@ class Home extends React.Component {
             <Row>
               {this.state.posts.map((post) => {
                 return (<Col xs={12} sm={4} md={3}>
-                  <PostThumb data={post}/>
+                  <PostThumb data={post} />
                 </Col>)
               })}
             </Row>
@@ -43,7 +46,17 @@ class Home extends React.Component {
         </>
       )
     }
-    else return (<>{this.state.error}</>)
+    else {
+      return (
+        <Container fluid>
+          <Row>
+            <Col className="mt-3">
+              {this.state.error}
+            </Col>
+          </Row>
+        </Container>
+      )
+    }
   }
 }
 

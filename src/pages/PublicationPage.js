@@ -4,7 +4,7 @@ import Publication from '../components/Publication/Publication'
 class PublicationPage extends React.Component {
   render() {
     return (
-        <Publication/>
+        <Publication postId={this.props.location.state.postId}/>
     )
   }
 }

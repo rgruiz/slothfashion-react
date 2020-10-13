@@ -10,7 +10,7 @@ import '../../styles/Publication.css'
 class Publication extends React.Component {
 
     state = {
-        postId: this.props.location.state.postId
+        postId: this.props.postId
     }
 
     async componentDidMount() {

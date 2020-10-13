@@ -30,6 +30,18 @@ class Home extends React.Component {
     }
   }
 
+  async componentDidMount() {
+    const filter = {
+      data: {
+        ascdesc: this.props.orderedby,
+        orderedby: this.props.filter,
+        tags: this.props.tags
+      }
+    }
+    const posts = await FilterPosts(filter)
+    this.setState({ ...this.state, posts: posts })
+  }
+
   render() {
     if (this.state.posts !== "" && this.state.posts) {
       return (

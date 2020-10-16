@@ -8,5 +8,6 @@ export const URL_GETPOSTBYID = DOMAIN + '/getpost/'
 export const URL_MERCADOPAGO = DOMAIN + '/mercadopago'
 export const URL_FILTERTAGS = DOMAIN + '/filterTags/'
 export const URL_FILTERPOSTS = DOMAIN + '/filterPosts'
+export const URL_POPULARTAGS = DOMAIN + '/mostUsedTags'
 
 export default DOMAIN

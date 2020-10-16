@@ -42,7 +42,7 @@ class Header extends React.Component {
               <SearchBar onTagsChange={this.onTagsChange} />
             </Nav>
             <Nav className="ml-auto right-align">
-              <Nav.Link href="#" >Ver Historial</Nav.Link>
+              <Nav.Link href="/historial" >Ver Historial</Nav.Link>
               {this.state.isLogged ? <Nav.Link>Logout</Nav.Link> : <Nav.Link onClick={this.toggleDrawer}>Login</Nav.Link>}
             </Nav>
           </Navbar.Collapse>

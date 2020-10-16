@@ -3,6 +3,7 @@ import AsyncSelect from 'react-select/async'
 import { Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import FilterTags from '../DB connections/FilterTags'
+import TagsPopulares from '../SearchBar/TagsPopulares'
 import '../../styles/SearchBar.css'
 
 class SearchBar extends React.Component {
@@ -59,6 +60,9 @@ class SearchBar extends React.Component {
         <Col xs={2}>
           <Link to={{ pathname: '/search', state: { ...this.state, tags: this.state.tags } }}
             className='btn btn-primary'>Buscar</Link>
+        </Col>
+        <Col xs={12} className="mt-1">
+          <TagsPopulares />
         </Col>
       </Row>
 

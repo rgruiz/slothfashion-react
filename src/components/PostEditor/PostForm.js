@@ -3,8 +3,11 @@ import { ValidationForm, TextInput, TextInputGroup } from 'react-bootstrap4-form
 import { Container, Col, Row, Form, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import CustomLayout from './ImageUpload'
+import TransformPostData from '../utils/TransformPostData'
 import POSTPost from '../DB connections/POSTPost'
+import GETPostByID from '../DB connections/GETPostByID'
 import '../../styles/PostForm.css'
+import PUTPost from '../DB connections/PUTPost';
 
 class Home extends React.Component {
   constructor() {
@@ -23,6 +26,7 @@ class Home extends React.Component {
         file2: "",
         file3: "",
         file4: "",
+        imagesModified: false,
       }
     }
   }
@@ -41,7 +45,6 @@ class Home extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     if (this.state.post_data.file1 === "" &&
       this.state.post_data.file2 === "" &&
       this.state.post_data.file3 === "" &&
@@ -49,26 +52,37 @@ class Home extends React.Component {
       alert("La publicación necesita al menos una imagen")
     }
     else {
-      POSTPost(this.state.post_data);
+      if (this.props.type !== 'edit') {
+        POSTPost(this.state.post_data)
+      }
+      else {
+        PUTPost(this.state.post_data)
+      }
     }
-    console.log(this.state)
 
   }
 
-  componentDidMount = () => {
-    this.setState({
-      ...this.state, "post_data": { ...this.state.post_data }
-    })
+  async componentDidMount() {
+    if (this.props.type === "edit") {
+      var post = await GETPostByID(this.props.postId)
+
+      const post_data = await TransformPostData(post)
+
+      this.setState({
+        ...this.state, "post_data": post_data
+      })
+
+    }
   }
 
   addFiles = (file, pos) => {
     const filepos = "file" + pos
-    this.setState({ ...this.state, "post_data": { ...this.state.post_data, [filepos]: file } })
+    this.setState({ ...this.state, "post_data": { ...this.state.post_data, [filepos]: file, imagesModified: true } })
   }
 
-  removeFiles = (file, pos) => {
+  removeFiles = (pos) => {
     const filepos = "file" + pos
-    this.setState({ ...this.state, "post_data": { ...this.state.post_data, [filepos]: "" } })
+    this.setState({ ...this.state, "post_data": { ...this.state.post_data, [filepos]: undefined, imagesModified: true } })
   }
 
   render() {
@@ -133,16 +147,20 @@ class Home extends React.Component {
                     /> */}
                       <Row>
                         <Col xs={12} sm={6} lg={3}>
-                          <CustomLayout addFiles={this.addFiles} removeFiles={this.removeFiles} pos='1' />
+                          <CustomLayout addFiles={this.addFiles} file={this.state.post_data.file1}
+                            removeFiles={this.removeFiles} pos='1' />
                         </Col>
                         <Col xs={12} sm={6} lg={3}>
-                          <CustomLayout addFiles={this.addFiles} removeFiles={this.removeFiles} pos='2' />
+                          <CustomLayout addFiles={this.addFiles} file={this.state.post_data.file2}
+                            removeFiles={this.removeFiles} pos='2' />
                         </Col>
                         <Col xs={12} sm={6} lg={3}>
-                          <CustomLayout addFiles={this.addFiles} removeFiles={this.removeFiles} pos='3' />
+                          <CustomLayout addFiles={this.addFiles} file={this.state.post_data.file3}
+                            removeFiles={this.removeFiles} pos='3' />
                         </Col>
                         <Col xs={12} sm={6} lg={3}>
-                          <CustomLayout addFiles={this.addFiles} removeFiles={this.removeFiles} pos='4' />
+                          <CustomLayout addFiles={this.addFiles} file={this.state.post_data.file4}
+                            removeFiles={this.removeFiles} pos='4' />
                         </Col>
                       </Row>
                     </Form.Group>

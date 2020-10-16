@@ -4,6 +4,7 @@
 export const DOMAIN = 'http://localhost:4000'
 
 export const URL_ADDPOST = DOMAIN + '/addpost'
+export const URL_EDITPOST = DOMAIN + '/editPost'
 export const URL_GETPOSTBYID = DOMAIN + '/getpost/'
 export const URL_MERCADOPAGO = DOMAIN + '/mercadopago'
 export const URL_FILTERTAGS = DOMAIN + '/filterTags/'

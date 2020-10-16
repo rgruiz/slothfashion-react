@@ -1,0 +1,8 @@
+
+.width-100 {
+  min-width: 45vw;
+}
+
+.row {
+  flex-grow: 1
+}

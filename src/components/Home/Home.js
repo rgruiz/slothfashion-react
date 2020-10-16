@@ -7,7 +7,7 @@ import PostThumbContainer from '../PostThumb/PostThumbContainer'
 
 class Home extends React.Component {
 
-  state = {
+/*   state = {
     ...this.state,
     orderedby: "DESC",
     filter: "fechaposteo",
@@ -27,15 +27,15 @@ class Home extends React.Component {
       })
     }
     this.setState({ ...this.state, tags: tags })
-  }
+  } */
 
   render() {
     return (
       <>
         <Slider />
         <Container fluid>
-          <Row>
-            <Col xs={12} sm={8} className='mt-3'>
+{/*           <Row>
+            <Col xs={12} className='mt-3'>
               <SearchBar onTagsChange={this.onTagsChange} />
             </Col>
             <Col xs={12} className='mt-2'>
@@ -44,7 +44,7 @@ class Home extends React.Component {
           </Row>
           <Row>
             <PostThumbContainer orderedby={this.state.orderedby} filter={this.state.filter} tags={this.state.tags} />
-          </Row>
+          </Row> */}
         </Container>
       </>
     )

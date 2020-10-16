@@ -1,12 +1,10 @@
 import axios from 'axios'
-import { URL_GETPOSTBYID } from '../../constants/URL'
+import { URL_POPULARTAGS } from '../../constants/URL'
 
-const GETPostByID = props => {
+const GETPopularTags = () => {
 
-  const finalurl = URL_GETPOSTBYID + props
-
-  let postData = new Promise(function (resolve, reject) {
-    let salida = axios.get((finalurl), {
+  let tags = new Promise(function (resolve, reject) {
+    let salida = axios.get((URL_POPULARTAGS), {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -31,8 +29,8 @@ const GETPostByID = props => {
     }
   })
 
-  return postData
+  return tags
 
 }
 
-export default GETPostByID;
+export default GETPopularTags;

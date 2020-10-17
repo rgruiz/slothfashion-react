@@ -3,7 +3,6 @@ import { URL_EDITPOST } from '../../constants/URL'
 
 const PUTPost = props => {
   const active = props.active ? 'activo' : 'inactivo'
-  console.log(props)
   const data = {
     "description": props.description,
     "price": props.price,

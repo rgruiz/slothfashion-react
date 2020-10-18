@@ -19,15 +19,18 @@ class Publication extends React.Component {
 
         const idPost = { idPost: postData.post.idpublicacion }
 
-        const datapreferenceid = await GETMercadoPagoLink(idPost)
+        if (postData.post.price > 0) {
 
-        var script = document.createElement('a')
-        var linkText = document.createTextNode("Comprar")
-        script.appendChild(linkText)
-        script.title = "Comprar"
-        script.href = datapreferenceid
-        document.body.appendChild(script)
-        this.div.appendChild(script);
+            const datapreferenceid = await GETMercadoPagoLink(idPost)
+
+            var script = document.createElement('a')
+            var linkText = document.createTextNode("Comprar")
+            script.appendChild(linkText)
+            script.title = "Comprar"
+            script.href = datapreferenceid
+            document.body.appendChild(script)
+            this.div.appendChild(script);
+        }
     }
 
     render() {
@@ -60,9 +63,11 @@ class Publication extends React.Component {
                                         $ {this.state.post.post.precio}
                                     </div>
                                 </Col>
-                                <Col xs={12} className="mt-3">
-                                    <Button className="btn-block boton-pago" ref={el => (this.div = el)}></Button>
-                                </Col>
+                                {this.state.post.post.precio > 0 &&
+                                    <Col xs={12} className="mt-3">
+                                        <Button className="btn-block boton-pago" ref={el => (this.div = el)}></Button>
+                                    </Col>
+                                }
                             </Row>
                         </Col>
                         <Col xs={12} lg={5}>

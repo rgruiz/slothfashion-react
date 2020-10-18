@@ -16,7 +16,7 @@ class ImgPost extends React.Component {
 
       this.setState({
         ...this.state,
-        selected_image: <Image src={DOMAIN + this.props.images[keys[0]].imagen.slice(6,)}
+        selected_image: <Image src={this.props.images[keys[0]].imagen}
           id={this.props.images[keys[0]].idimagen} rounded fluid />
       })
     }
@@ -39,9 +39,9 @@ class ImgPost extends React.Component {
           {this.state.images.map((image) =>
             <Col xs={3} className='mt-3'>
               <button className="thumbnail">
-                <Image src={DOMAIN + image.imagen.slice(6,)} className="hover-zoom"
+                <Image src={image.imagen} className="hover-zoom"
                   id={image.idimagen} rounded fluid thumbnail
-                  onClick={() => {this.changeImg(DOMAIN + image.imagen.slice(6,), image.idimagen)}} />
+                  onClick={() => {this.changeImg(image.imagen, image.idimagen)}} />
               </button>
             </Col>
           )}

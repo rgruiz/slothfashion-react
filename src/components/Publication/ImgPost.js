@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col, Image } from 'react-bootstrap'
-import DOMAIN from '../../constants/URL'
+import { URL_AWSFILES } from '../../constants/URL'
 
 class ImgPost extends React.Component {
 
@@ -16,7 +16,7 @@ class ImgPost extends React.Component {
 
       this.setState({
         ...this.state,
-        selected_image: <Image src={this.props.images[keys[0]].imagen}
+        selected_image: <Image src={URL_AWSFILES + this.props.images[keys[0]].imagen}
           id={this.props.images[keys[0]].idimagen} rounded fluid />
       })
     }
@@ -39,9 +39,9 @@ class ImgPost extends React.Component {
           {this.state.images.map((image) =>
             <Col xs={3} className='mt-3'>
               <button className="thumbnail">
-                <Image src={image.imagen} className="hover-zoom"
+                <Image src={URL_AWSFILES + image.imagen} className="hover-zoom"
                   id={image.idimagen} rounded fluid thumbnail
-                  onClick={() => {this.changeImg(image.imagen, image.idimagen)}} />
+                  onClick={() => {this.changeImg(URL_AWSFILES + image.imagen, image.idimagen)}} />
               </button>
             </Col>
           )}

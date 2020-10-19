@@ -4,8 +4,6 @@ import { URL_FILTERPOSTS } from '../../constants/URL'
 
 const FilterPosts = props => {
 
-  console.log(props)
-
   const salida = axios.post((URL_FILTERPOSTS), props, {
     method: 'POST',
     headers: {

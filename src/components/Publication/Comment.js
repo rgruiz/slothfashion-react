@@ -4,7 +4,6 @@ import FormatDate from '../utils/FormatDate'
 import { Avatar } from 'rsuite'
 
 const Comment = props => {
-  console.log(props.comments)
   return (
     <>
       {props.comments.length !== 0 &&

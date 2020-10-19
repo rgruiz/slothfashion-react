@@ -19,7 +19,7 @@ class Publication extends React.Component {
 
         const idPost = { idPost: postData.post.idpublicacion }
 
-        if (postData.post.price > 0) {
+        if (postData.post.precio > 0) {
 
             const datapreferenceid = await GETMercadoPagoLink(idPost)
 
@@ -34,7 +34,6 @@ class Publication extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         if (this.state.post !== undefined) {
             return (
                 <Container className="mt-4">

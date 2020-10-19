@@ -16,7 +16,7 @@ class TagsPopulares extends React.Component {
 
   render() {
     return (
-      this.state.tage !== undefined &&
+      this.state.tags !== undefined &&
       <div style={{display: "flex"}}><span className="mr-2">tags populares:</span><DisplayTags tags={this.state.tags} /></div>
     )
   }

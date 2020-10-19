@@ -38,9 +38,7 @@ class Header extends React.Component {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" bsPrefix="no-margin-top navbar-toggler" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav xs={12}>
               <SearchBar onTagsChange={this.onTagsChange} />
-            </Nav>
             <Nav className="ml-auto right-align">
               <Nav.Link href="/historial" >Ver Historial</Nav.Link>
               {this.state.isLogged ? <Nav.Link>Logout</Nav.Link> : <Nav.Link onClick={this.toggleDrawer}>Login</Nav.Link>}

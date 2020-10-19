@@ -1,6 +1,6 @@
 import React from 'react'
 import AsyncSelect from 'react-select/async'
-import { Row, Col, Button } from 'react-bootstrap'
+import { Row, Col, Button, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import FilterTags from '../DB connections/FilterTags'
 import TagsPopulares from '../SearchBar/TagsPopulares'
@@ -51,21 +51,20 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <Row className="width-100">
-        <Col xs={10}>
+      <Row className="mr-auto">
+        <Col xs={12} md={9}>
           <AsyncSelect
             isMulti cacheOptions defaultOptions loadOptions={this.promiseOptions} onChange={this.handleChange}
           />
         </Col>
-        <Col xs={2}>
+        <Col xs={12} md={3}>
           <Link to={{ pathname: '/search', state: { ...this.state, tags: this.state.tags } }}
-            className='btn btn-primary'>Buscar</Link>
+            className='btn btn-primary btn-block'>Buscar</Link>
         </Col>
         <Col xs={12} className="mt-1">
           <TagsPopulares />
         </Col>
       </Row>
-
     )
   }
 }

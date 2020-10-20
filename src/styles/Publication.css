@@ -2,6 +2,12 @@
     overflow: hidden;
 }
 
+.comment-container {
+    height: 80vh !important;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 .comment{
     Border: 1px solid black;
 }

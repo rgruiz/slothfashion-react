@@ -38,8 +38,8 @@ class ImgPost extends React.Component {
         <Row>
           {this.state.images.map((image) =>
             <Col xs={3} className='mt-3'>
-              <button className="thumbnail">
-                <Image src={URL_AWSFILES + image.imagen} className="hover-zoom"
+              <button className="no-background">
+                <Image src={URL_AWSFILES + image.imagen} className="thumbnail hover-zoom"
                   id={image.idimagen} rounded fluid thumbnail
                   onClick={() => {this.changeImg(URL_AWSFILES + image.imagen, image.idimagen)}} />
               </button>

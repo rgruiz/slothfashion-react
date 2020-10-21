@@ -47,7 +47,7 @@
 
 .thumbnail:active{
     background:none;
-    outline: none
+    outline: none;
 }
 
 .hover-zoom {
@@ -62,6 +62,17 @@
 .no-background {
     background: none !important;
     padding: none;
+}
+
+.no-background:active {
+    background: none !important;
+    border: none !important;
+    transform: scale(0.9);
+}
+
+.no-background:focus {
+    background: none !important;
+    outline: none;
 }
 
 .comment-container::-webkit-scrollbar-track {

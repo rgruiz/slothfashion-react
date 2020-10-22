@@ -9,11 +9,22 @@ class SearchResults extends React.Component {
     ...this.state,
     orderedby: "DESC",
     filter: "fechaposteo",
-    page: 1
+    page: 1,
+    tags: ""
   }
 
   changePage = (page) => {
-    this.setState({...this.state, page: page})
+    this.setState({ ...this.state, page: page })
+  }
+
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.tags !== this.props.tags) {
+      this.setState({ ...this.state, tags: this.props.tags, page: 1 })
+    }
+  }
+
+  componentDidMount = () => {
+    this.setState({ ...this.state, tags: this.props.tags, page: 1 })
   }
 
   render() {
@@ -22,7 +33,7 @@ class SearchResults extends React.Component {
         <Container fluid>
           <Row>
             <PostThumbContainer orderedby={this.state.orderedby} page={this.state.page} changePage={this.changePage}
-            filter={this.state.filter} tags={this.props.tags} />
+              filter={this.state.filter} tags={this.state.tags} />
           </Row>
         </Container>
       </>

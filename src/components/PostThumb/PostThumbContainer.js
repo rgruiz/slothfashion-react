@@ -16,9 +16,10 @@ class PostThumbContainer extends React.Component {
   }
 
   async componentDidUpdate(prevProps) {
+    console.log(this.props)
     /*      no esta andando bien borrar todas las tags, porque dejaria la ultima busqueda. quizas se podria cambiar 
          para que cuando se borre todo se muestre algo por defecto (tags = "") */
-    if (prevProps !== this.props && this.props !== null && this.props.tags !== "") {
+    if (prevProps !== this.props && this.props !== null && this.props.tags !== "" && this.props.tags!==undefined) {
       const filter = {
         data: {
           ascdesc: this.props.orderedby,
@@ -32,11 +33,12 @@ class PostThumbContainer extends React.Component {
       if (posts !== undefined && posts.length > 0) {
         const maxPages = Math.ceil(posts[0].maxresults / this.state.max)
         this.changeMaxPages(maxPages)
+        this.setState({ ...this.state, posts: posts })
       }
-      this.setState({ ...this.state, posts: posts })
-    }
-    if (prevProps !== this.props && this.props.tags === "") {
-      this.setState({ ...this.state, posts: "", page: 1, max: this.props.max })
+      else {
+        this.changePage(1)
+        this.changeMaxPages(1)
+      }
     }
   }
 
@@ -50,10 +52,14 @@ class PostThumbContainer extends React.Component {
         max: 12,
       }
     }
-    const posts = await FilterPosts(filter)
-    this.setState({ ...this.state, posts: posts })
-    const maxPages = Math.ceil(posts[0].maxresults / this.state.max)
-    this.changeMaxPages(maxPages)
+    if (this.props.tags !== "" && this.props.tags !== undefined) {
+      const posts = await FilterPosts(filter)
+      this.setState({ ...this.state, posts: posts })
+      if (posts !== undefined && posts.length > 0) {
+        const maxPages = Math.ceil(posts[0].maxresults / this.state.max)
+        this.changeMaxPages(maxPages)
+      }
+    }
   }
 
   changePage = (page) => {

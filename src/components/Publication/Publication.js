@@ -17,11 +17,16 @@ class Publication extends React.Component {
         const postData = await GETPostByID(this.state.postId)
         this.setState({ ...this.state, post: postData })
 
-        const idPost = { idPost: postData.post.idpublicacion }
-
         if (postData.post.precio > 0) {
+            // idComprador vendria de la cookie --> los links de compra solo existen si el usuario esta logueado
+            const mpLinkData = {
+                idPost: postData.post.idpublicacion,
+                idBuyer: 2
+            }
 
-            const datapreferenceid = await GETMercadoPagoLink(idPost)
+
+
+            const datapreferenceid = await GETMercadoPagoLink(mpLinkData)
 
             var script = document.createElement('a')
             var linkText = document.createTextNode("Comprar")
@@ -63,7 +68,7 @@ class Publication extends React.Component {
                                     </div>
                                 </Col>
                                 {this.state.post.post.precio > 0 &&
-                                    <Col xs={12} className="mt-3">
+                                    <Col xs={12} className="mt-3 mb-3">
                                         <Button className="btn-block boton-pago" ref={el => (this.div = el)}></Button>
                                     </Col>
                                 }

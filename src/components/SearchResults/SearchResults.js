@@ -9,7 +9,7 @@ class SearchResults extends React.Component {
     ...this.state,
     orderedby: "DESC",
     filter: "fechaposteo",
-    page: 1,
+    page: this.props.page
   }
 
   changePage = (page) => {

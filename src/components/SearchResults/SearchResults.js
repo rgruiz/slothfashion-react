@@ -1,6 +1,7 @@
 import React from 'react'
-import { Container, Col, Row } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 import PostThumbContainer from '../PostThumb/PostThumbContainer'
+
 
 class SearchResults extends React.Component {
 
@@ -8,6 +9,11 @@ class SearchResults extends React.Component {
     ...this.state,
     orderedby: "DESC",
     filter: "fechaposteo",
+    page: 1
+  }
+
+  changePage = (page) => {
+    this.setState({...this.state, page: page})
   }
 
   render() {
@@ -15,7 +21,8 @@ class SearchResults extends React.Component {
       <>
         <Container fluid>
           <Row>
-            <PostThumbContainer orderedby={this.state.orderedby} filter={this.state.filter} tags={this.props.tags} />
+            <PostThumbContainer orderedby={this.state.orderedby} page={this.state.page} changePage={this.changePage}
+            filter={this.state.filter} tags={this.props.tags} />
           </Row>
         </Container>
       </>

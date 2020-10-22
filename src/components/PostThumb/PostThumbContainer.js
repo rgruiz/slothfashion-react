@@ -1,14 +1,18 @@
 import React from 'react'
 import { Container, Col, Row } from 'react-bootstrap'
 import PostThumb from './PostThumb'
+import Pagination from '../SearchResults/Pagination'
 import FilterPosts from '../DB connections/FilterPosts'
 
-class Home extends React.Component {
+class PostThumbContainer extends React.Component {
 
   state = {
     ...this.state,
     posts: "",
-    error: "No hay resultados. Por favor realizá una búsqueda y eligiendo la etiqueta deseada de la lista."
+    error: "No hay resultados. Por favor realizá una búsqueda y eligiendo la etiqueta deseada de la lista.",
+    page: this.props.page,
+    max: 12,
+    maxPages: 1,
   }
 
   async componentDidUpdate(prevProps) {
@@ -19,14 +23,20 @@ class Home extends React.Component {
         data: {
           ascdesc: this.props.orderedby,
           orderedby: this.props.filter,
-          tags: this.props.tags
+          tags: this.props.tags,
+          page: this.state.page,
+          max: this.state.max,
         }
       }
       const posts = await FilterPosts(filter)
+      if (posts !== undefined && posts.length > 0) {
+        const maxPages = Math.ceil(posts[0].maxresults / this.state.max)
+        this.changeMaxPages(maxPages)
+      }
       this.setState({ ...this.state, posts: posts })
     }
     if (prevProps !== this.props && this.props.tags === "") {
-      this.setState({ ...this.state, posts: "" })
+      this.setState({ ...this.state, posts: "", page: 1, max: this.props.max })
     }
   }
 
@@ -35,12 +45,26 @@ class Home extends React.Component {
       data: {
         ascdesc: this.props.orderedby,
         orderedby: this.props.filter,
-        tags: this.props.tags
+        tags: this.props.tags,
+        page: this.state.page,
+        max: 12,
       }
     }
     const posts = await FilterPosts(filter)
     this.setState({ ...this.state, posts: posts })
+    const maxPages = Math.ceil(posts[0].maxresults / this.state.max)
+    this.changeMaxPages(maxPages)
   }
+
+  changePage = (page) => {
+    this.setState({ ...this.state, page: page })
+    this.props.changePage(page)
+  }
+
+  changeMaxPages = (page) => {
+    this.setState({ ...this.state, maxPages: page })
+  }
+
 
   render() {
     if (this.state.posts !== "" && this.state.posts) {
@@ -54,6 +78,8 @@ class Home extends React.Component {
                 </Col>)
               })}
             </Row>
+            <Pagination max={this.state.max} maxPages={this.state.maxPages}
+              page={this.state.page} changePage={this.changePage} changeMaxPages={this.changeMaxPages} />
           </Container>
         </>
       )
@@ -72,4 +98,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home
+export default PostThumbContainer

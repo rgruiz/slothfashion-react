@@ -10,6 +10,7 @@ class SearchBar extends React.Component {
 
   state = {
     inputValue: "",
+    tags: ""
 
   };
 
@@ -45,7 +46,6 @@ class SearchBar extends React.Component {
         }
       })
     }
-    this.setState({ ...this.state, tags: tags })
     this.setState({ ...this.state, tags: tags })
   }
 

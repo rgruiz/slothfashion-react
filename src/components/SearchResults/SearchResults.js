@@ -10,7 +10,6 @@ class SearchResults extends React.Component {
     orderedby: "DESC",
     filter: "fechaposteo",
     page: 1,
-    tags: ""
   }
 
   changePage = (page) => {
@@ -33,7 +32,7 @@ class SearchResults extends React.Component {
         <Container fluid>
           <Row>
             <PostThumbContainer orderedby={this.state.orderedby} page={this.state.page} changePage={this.changePage}
-              filter={this.state.filter} tags={this.state.tags} />
+              filter={this.state.filter} tags={this.props.tags} />
           </Row>
         </Container>
       </>

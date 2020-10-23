@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Row } from 'react-bootstrap'
 import PostThumbContainer from '../PostThumb/PostThumbContainer'
-import Pagination from './Pagination'
+
 
 class SearchResults extends React.Component {
 
@@ -9,17 +9,11 @@ class SearchResults extends React.Component {
     ...this.state,
     orderedby: "DESC",
     filter: "fechaposteo",
-    page: this.props.page,
-    maxPages: 1,
-    max: 12
+    page: this.props.page
   }
 
-  changePage = (value) => {
-    this.setState({ ...this.state, page: value })
-  }
-
-  changeMaxPages = (value) => {
-    this.setState({ ...this.state, maxPages: value })
+  changePage = (page) => {
+    this.setState({ ...this.state, page: page })
   }
 
   componentDidUpdate = (prevProps) => {
@@ -38,9 +32,7 @@ class SearchResults extends React.Component {
         <Container fluid>
           <Row>
             <PostThumbContainer orderedby={this.state.orderedby} page={this.state.page} changePage={this.changePage}
-              changeMaxPages={this.changeMaxPages} filter={this.state.filter} tags={this.props.tags} max={this.state.max} />
-            <Pagination max={this.state.max} maxPages={this.state.maxPages}
-              page={this.state.page} changePage={this.changePage} changeMaxPages={this.changeMaxPages} />
+              filter={this.state.filter} tags={this.props.tags} />
           </Row>
         </Container>
       </>

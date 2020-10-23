@@ -1,7 +1,6 @@
 import React from 'react'
 import { Container, Col, Row } from 'react-bootstrap'
 import PostThumb from './PostThumb'
-import Pagination from '../SearchResults/Pagination'
 import FilterPosts from '../DB connections/FilterPosts'
 
 class PostThumbContainer extends React.Component {
@@ -11,8 +10,7 @@ class PostThumbContainer extends React.Component {
     posts: "",
     error: "No hay resultados. Por favor realizá una búsqueda y eligiendo la etiqueta deseada de la lista.",
     page: this.props.page,
-    max: 12,
-    maxPages: 1,
+    maxPages: this.props.maxPages,
   }
 
   async componentDidUpdate(prevProps) {
@@ -25,13 +23,13 @@ class PostThumbContainer extends React.Component {
           orderedby: this.props.filter,
           tags: this.props.tags,
           page: this.state.page,
-          max: this.state.max,
+          max: this.props.max,
         }
       }
 
       const posts = await FilterPosts(filter)
       if (posts !== undefined && posts.length > 0) {
-        const maxPages = Math.ceil(posts[0].maxresults / this.state.max)
+        const maxPages = Math.ceil(posts[0].maxresults / this.props.max)
         this.changeMaxPages(maxPages)
         this.setState({ ...this.state, posts: posts, page: this.props.page })
 
@@ -69,12 +67,13 @@ class PostThumbContainer extends React.Component {
   }
 
   changePage = (page) => {
-    this.setState({ ...this.state, page: page })
+    /*     this.setState({ ...this.state, page: page }) */
     this.props.changePage(page)
   }
 
   changeMaxPages = (page) => {
-    this.setState({ ...this.state, maxPages: page })
+    /*     this.setState({ ...this.state, maxPages: page }) */
+    this.props.changeMaxPages(page)
   }
 
 
@@ -90,8 +89,6 @@ class PostThumbContainer extends React.Component {
                 </Col>)
               })}
             </Row>
-            <Pagination max={this.state.max} maxPages={this.state.maxPages}
-              page={this.state.page} changePage={this.changePage} changeMaxPages={this.changeMaxPages} />
           </Container>
         </>
       )

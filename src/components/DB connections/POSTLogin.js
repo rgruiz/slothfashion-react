@@ -7,12 +7,9 @@ import { cookieName } from '../../constants/Cookie'
 
 const POSTLogin = props => {
   const data = {
-    "mail": props.mail,
-    "password": props.password,
+    mail: props.mail,
+    password: props.password,
   }
-
-  var dataUsuario = new FormData();
-  dataUsuario.append('data', JSON.stringify(data));
 
   const BakeCookies = (props) => {
     const cookies = new Cookies();
@@ -24,14 +21,14 @@ const POSTLogin = props => {
     
     cookies.set(cookieName, cookie, { path: '/' });
 
-    window.location = '/'
+    return window.location = '/'
 
   }
 
-  return axios.post((URL_LOGIN), dataUsuario, {
+  return axios.post((URL_LOGIN), data, {
     method: 'POST',
     headers: {
-      'Content-Type': 'multipart/form-data',
+      'Content-Type': 'application/json',
     }
   }).then(res => {
     if (res.status === 200) {

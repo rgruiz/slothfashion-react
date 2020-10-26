@@ -3,11 +3,15 @@ import { ValidationForm, TextInput, TextInputGroup } from 'react-bootstrap4-form
 import { Container, Col, Row, Form, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import CustomLayout from './ImageUpload'
+import { Message } from 'rsuite'
+import RecuperarCookie from '../Cookies/RecuperarCookie'
 import TransformPostData from '../utils/TransformPostData'
 import POSTPost from '../DB connections/POSTPost'
 import GETPostByID from '../DB connections/GETPostByID'
+import PUTPost from '../DB connections/PUTPost'
+import GETHasMPAcc from '../DB connections/GETHasMPAcc'
 import '../../styles/PostForm.css'
-import PUTPost from '../DB connections/PUTPost';
+
 
 class Home extends React.Component {
   constructor() {
@@ -27,7 +31,9 @@ class Home extends React.Component {
         file3: "",
         file4: "",
         imagesModified: false,
-      }
+      },
+      hasMPAcc: false,
+      linkMP: "#"
     }
   }
 
@@ -73,6 +79,20 @@ class Home extends React.Component {
       })
 
     }
+    else {
+      const cookie = RecuperarCookie()
+      if (cookie !== undefined) {
+
+        const hasMPAcc = await GETHasMPAcc(cookie.idusuario)
+
+        if (hasMPAcc !== "exists") {
+          this.setState({ ...this.state, hasMPAcc: false, linkMP: hasMPAcc })
+        }
+        else {
+          this.setState({ ...this.state, hasMPAcc: true })
+        }
+      }
+    }
   }
 
   addFiles = (file, pos) => {
@@ -92,6 +112,18 @@ class Home extends React.Component {
         <Container>
           <Row className='flex-box justify-content-around mt-4'>
             <Col xs={12} sm={10}>
+              {!this.state.hasMPAcc && <Message
+                showIcon
+                type="error"
+                title="Error"
+                description={
+                  <p>
+                    Necesitás asociar tu cuenta de SlothFashion con MercadoPago para empezar a vender. Usá el link para hacerlo.
+                    <br />
+                    <a href={this.state.linkMP} id="linkMP">Asociá tu cuenta</a>
+                  </p>
+                }
+              />}
               <ValidationForm onSubmit={this.handleSubmit} className="post_form">
                 <Form encType='multipart/form-data'>
                   <Form.Row>

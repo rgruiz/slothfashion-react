@@ -28,19 +28,25 @@ class PostThumbContainer extends React.Component {
           max: this.state.max,
         }
       }
+      if (this.props.tags !== prevProps.tags) {
+        this.changeMaxPages(1)
+        this.changePage(1)
+      }
 
       const posts = await FilterPosts(filter)
       if (posts !== undefined && posts.length > 0) {
         const maxPages = Math.ceil(posts[0].maxresults / this.state.max)
         this.changeMaxPages(maxPages)
-        this.setState({ ...this.state, posts: posts, page: this.props.page })
-
-        if (this.props.tags !== prevProps.tags) {
-          this.changePage(1)
-        }
+        this.setState({ ...this.state, posts: posts, page: this.state.page })
       }
       else {
-        this.setState({ ...this.state, posts: "" })
+        if (this.state.page === 1) {
+          this.setState({ ...this.state, posts: "" })
+        }
+        else {
+          this.changeMaxPages(1)
+          this.changePage(1)
+        }
       }
     }
     if (prevProps !== this.props && this.props.tags === "") {
@@ -61,10 +67,10 @@ class PostThumbContainer extends React.Component {
 
     if (this.props.tags !== "" && this.props.tags !== undefined) {
       const posts = await FilterPosts(filter)
-      this.setState({ ...this.state, posts: posts, page: this.props.page })
+      this.setState({ ...this.state, posts: posts, page: this.state.page })
     }
     else {
-      this.setState({ ...this.state, posts: "", page: this.props.page })
+      this.setState({ ...this.state, posts: "", page: this.state.page })
     }
   }
 

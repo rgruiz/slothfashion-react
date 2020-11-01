@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Form, Container, Row, Col , Button} from 'react-bootstrap'
 import { ValidationForm, TextInput } from 'react-bootstrap4-form-validation'
 import validator from 'validator'
+import POSTSignup from '../DB connections/POSTSignUp'
 
 class SignUp extends Component {
   state = {
@@ -30,9 +31,9 @@ class SignUp extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
-    /* const jsonForm = TransformSignup(this.state.signup);
-    POSTSignup(jsonForm);  */
+    const signUpFormateado = {nombre: this.state.signup.nombre, apellido: this.state.signup.apellido, password: this.state.signup.password, 
+    mail: this.state.signup.email, telefono: this.state.signup.telefono}
+    POSTSignup(signUpFormateado);
 
   }
 

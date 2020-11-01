@@ -63,3 +63,8 @@ code {
   height: 10px;
   border-radius: 100%;
 }
+
+.carousel-item img{
+  min-height: 30vh;
+  object-fit:cover;
+}

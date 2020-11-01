@@ -21,7 +21,7 @@ const POSTLogin = props => {
     
     cookies.set(cookieName, cookie, { path: '/' });
 
-    return window.location = '/'
+    return window.location.reload()
 
   }
 

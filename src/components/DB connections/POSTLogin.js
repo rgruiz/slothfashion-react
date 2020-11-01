@@ -17,7 +17,7 @@ const POSTLogin = props => {
     cookies.set('timeout', date, { path: '/' });
 
     const simpleCrypto = new SimpleCrypto({ SecretKey })
-    const cookie = simpleCrypto.encrypt(props.data)
+    const cookie = simpleCrypto.encrypt(props)
     
     cookies.set(cookieName, cookie, { path: '/' });
 

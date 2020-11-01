@@ -10,5 +10,6 @@ export const URL_FILTERPOSTS = DOMAIN + '/filterPosts'
 export const URL_POPULARTAGS = DOMAIN + '/mostUsedTags'
 export const URL_HACERCOMPRA = DOMAIN + '/hacerCompra'
 export const URL_LOGIN = DOMAIN + '/logIn'
+export const URL_MPCHECK = DOMAIN + '/mpCheck'
 export const URL_AWSFILES = process.env.NODE_ENV === 'production' ? 'https://slothfashionreact.s3-sa-east-1.amazonaws.com/' : 'https://slothfashionreactpre.s3-sa-east-1.amazonaws.com/'
 export default DOMAIN

@@ -9,7 +9,7 @@ class EntradaCompras extends React.Component {
 
   render() {
     return (
-      <Col xs={12} className='ml-0 mr-0 pr-0 pl-0 mt-2 link-container'>
+      <Col xs={12} className='mt-2 link-container'>
         <Link
           className='link-to-post'
           to={{
@@ -17,12 +17,12 @@ class EntradaCompras extends React.Component {
             state: { postId: this.props.post.publicacion }
           }}>
           <Row id={this.props.post.idhistorial}>
-            <Col xs={2}>
+            <Col xs={12} sm={5} md={3}>
               <Image src={URL_AWSFILES + this.props.post.imagen} className="thumb-historial" id={this.props.post.publicacion} />
             </Col>
-            <Col xs={9}>
+            <Col xs={12} sm={7} md={9}>
               <Row>
-                <Col xs={6}>
+                <Col xs={12} md={6}>
                   <Row>
                     <Col xs={12}>
                       <h5>Descripción</h5>
@@ -38,7 +38,7 @@ class EntradaCompras extends React.Component {
                     </Col>
                   </Row>
                 </Col>
-                <Col xs={6} id={this.props.post.poster}>
+                <Col xs={12} md={6} id={this.props.post.poster}>
                   <Row>
                     <Col xs={12}>
                       <h5>Datos del vendedor</h5>

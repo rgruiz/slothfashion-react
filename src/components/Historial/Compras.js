@@ -1,36 +1,24 @@
-import React from 'react';
-import { Row, Table } from 'react-bootstrap';
+import React from 'react'
+import { Row } from 'react-bootstrap'
+import EntradaCompras from './EntradaCompras'
 
 class Compras extends React.Component {
 
   render() {
-    return (
-      <Row>
-        <h3 className = 'justify-content-center'>Compras</h3>
-          <Table striped bordered hover  className = 'comment'>
-            <tbody>
-              <tr>
-                <td>Compras</td>
-              </tr>
-              <tr>
-                <td>Compras</td>
-              </tr>
-                <tr>
-                <td>Compras</td>
-              </tr>
-                <tr>
-                <td>Compras</td>
-              </tr>
-                <tr>
-                <td>Compras</td>
-              </tr>
-                <tr>
-                <td>Compras</td>
-              </tr>
-            </tbody>
-          </Table>
+    if (this.props.compras !== undefined && this.props.compras.length > 0) {
+      return (
+        <Row>
+          {this.props.compras.map((compra) => {
+            return <EntradaCompras post={compra} />
+          })}
+        </Row>
+      )
+    }
+    else {
+      return <Row>
+        <h3>Todavía no tenes compras</h3>
       </Row>
-    )
+    }
   }
 }
 

@@ -13,5 +13,6 @@ export const URL_LOGIN = DOMAIN + '/logIn'
 export const URL_GETPUBLICATION = DOMAIN + '/getpublicaciones'
 export const URL_MPCHECK = DOMAIN + '/mpCheck'
 export const URL_SIGNUP = DOMAIN + '/signUp'
+export const URL_HISTORIAL = DOMAIN + '/getHistorial/'
 export const URL_AWSFILES = process.env.NODE_ENV === 'production' ? 'https://slothfashionreact.s3-sa-east-1.amazonaws.com/' : 'https://slothfashionreactpre.s3-sa-east-1.amazonaws.com/'
 export default DOMAIN

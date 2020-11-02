@@ -8,16 +8,6 @@ import '../../styles/historial.css'
 class EntradaPublicaciones extends React.Component {
 
 
-  pepe = {
-    "poster": 1,
-    "imagen": "138-file2.jpeg",
-    "fechatransaccion": null,
-    "nombreCont": null,
-    "apellidoCont": null,
-    "mailCont": null,
-    "telefonoCont": null
-  }
-
   render() {
     return (
       <Col xs={12} className='mt-2 link-container'>
@@ -37,7 +27,7 @@ class EntradaPublicaciones extends React.Component {
                 <Col xs={12} md={6}>
                   <Row>
                     <Col xs={12}>
-                      <h5>DescripciÃ³n</h5>
+                      <h5>Descripción</h5>
                     </Col>
                     <Col xs={12}>
                       Fecha posteo: {FormatDate(this.props.post.fechaposteo)}

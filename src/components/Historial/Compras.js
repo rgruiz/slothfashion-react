@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import EntradaCompras from './EntradaCompras'
 
 class Compras extends React.Component {
@@ -16,7 +16,9 @@ class Compras extends React.Component {
     }
     else {
       return <Row>
-        <h3>Todavía no tenes compras</h3>
+        <Col>
+          <h3>Todavía no tenes compras</h3>
+        </Col>
       </Row>
     }
   }

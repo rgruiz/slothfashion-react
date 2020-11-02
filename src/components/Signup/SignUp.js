@@ -56,7 +56,7 @@ class SignUp extends Component {
             <ValidationForm onSubmit={this.handleSubmit} onErrorSubmit={this.handleErrorSubmit} className="signupForm">
               <Form>
                 <Form.Row>
-                  <Form.Group as={Col} xs='12' md='6' controlId="nombre">
+                  <Form.Group as={Col} xs={12} md={6} controlId="nombre">
                     <Form.Label>Nombre</Form.Label>
                     <TextInput name="nombre" id="nombre" required
                       value={this.state.signup.nombre}
@@ -68,7 +68,7 @@ class SignUp extends Component {
                       }}
                     />
                   </Form.Group>
-                  <Form.Group as={Col} xs='12' md='6' controlId="apellido">
+                  <Form.Group as={Col} xs={12} md={6} controlId="apellido">
                     <Form.Label>Apellido</Form.Label>
                     <TextInput name="apellido" id="apellido" required
                       value={this.state.signup.apellido}
@@ -82,7 +82,7 @@ class SignUp extends Component {
                   </Form.Group>
                 </Form.Row>
                 <Form.Row>
-                  <Form.Group as={Col} md={6} sm={12} controlId="email">
+                  <Form.Group as={Col} xs={12} md={6} controlId="email">
                     <Form.Label>Correo Electrónico</Form.Label>
                     <TextInput name="email" id="email" type="email" required
                       validator={validator.isEmail}
@@ -91,7 +91,7 @@ class SignUp extends Component {
                       onChange={this.handleChange}
                     />
                   </Form.Group>
-                  <Form.Group as={Col} md={6} sm={12} controlId="telefono">
+                  <Form.Group as={Col} xs={12} md={6} controlId="telefono">
                     <Form.Label>Teléfono</Form.Label>
                     <TextInput name="telefono" id="telefono" required
                       value={this.state.signup.telefono}
@@ -105,7 +105,7 @@ class SignUp extends Component {
                   </Form.Group>
                 </Form.Row>
                 <Form.Row>
-                  <Form.Group as={Col} md={6} sm={12} controlId="password">
+                  <Form.Group as={Col} xs={12} md={6} controlId="password">
                     <Form.Label>Password</Form.Label>
                     <TextInput name="password" id="password" type="password" required
                       pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,15}"
@@ -117,7 +117,7 @@ class SignUp extends Component {
                       onChange={this.handleChange}
                     />
                   </Form.Group>
-                  <Form.Group as={Col} md={6} sm={12} controlId="confirmPassword">
+                  <Form.Group as={Col} xs={12} md={6} controlId="confirmPassword">
                     <Form.Label>Confirmar Password</Form.Label>
                     <TextInput name="confirmPassword" id="confirmPassword" type="password" required
                       validator={this.matchPassword}

@@ -30,11 +30,11 @@ class Historial extends React.Component {
         return (
             <Container>
                 <Row>
-                    <Col xs={12} className="ml-0 mr-0 pr-0 pl-0 mt-2">
+                    <Col xs={12} className="mt-2">
                         <Select
                             name="filtro"
                             options={[{ value: 'compras', label: 'Ver Compras' }, { value: 'publicaciones', label: 'Ver Publicaciones' }]}
-                            className="basic-multi-select pl-0 pr-0 ml-0 mr-0"
+                            className="basic-multi-select"
                             classNamePrefix="select"
                             onChange={this.handleChange}
                             value={this.state.filter}

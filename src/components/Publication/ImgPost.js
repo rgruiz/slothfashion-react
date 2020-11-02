@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Image } from 'react-bootstrap'
+import { Container, Row, Col, Image } from 'react-bootstrap'
 import { URL_AWSFILES } from '../../constants/URL'
 
 class ImgPost extends React.Component {
@@ -29,6 +29,7 @@ class ImgPost extends React.Component {
 
   render() {
     return (
+      <Container>
       <Row>
         <Row>
           <Col xs={12}>
@@ -47,6 +48,7 @@ class ImgPost extends React.Component {
           )}
         </Row>
       </Row>
+      </Container>
     )
   }
 }

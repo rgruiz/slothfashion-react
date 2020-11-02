@@ -27,7 +27,7 @@ class EntradaPublicaciones extends React.Component {
                 <Col xs={12} md={6}>
                   <Row>
                     <Col xs={12}>
-                      <h5>Descripción</h5>
+                      <h5>DescripciÃ³n</h5>
                     </Col>
                     <Col xs={12}>
                       Fecha posteo: {FormatDate(this.props.post.fechaposteo)}

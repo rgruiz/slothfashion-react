@@ -23,7 +23,8 @@ class Publication extends React.Component {
         if (cookie !== undefined) {
             this.setState({ ...this.state, userId: cookie.idusuario })
         }
-        if (postData.post.precio > 0 && this.state.userId > 0) {
+
+        if (postData.post.precio > 0 && this.state.userId > 0 && postData.post.estado !== 'inactivo') {
             // idComprador vendria de la cookie --> los links de compra solo existen si el usuario esta logueado
             const mpLinkData = {
                 idPost: postData.post.idpublicacion,
@@ -71,7 +72,7 @@ class Publication extends React.Component {
                                         $ {this.state.post.post.precio}
                                     </div>
                                 </Col>
-                                {this.state.post.post.precio > 0 && this.state.userId > 0 &&
+                                {this.state.post.post.precio > 0 && this.state.userId > 0 && this.state.post.post.estado !== 'inactivo' &&
                                     <Col xs={12} className="mt-3 mb-3">
                                         <Button className="btn-block boton-pago" ref={el => (this.div = el)}></Button>
                                     </Col>

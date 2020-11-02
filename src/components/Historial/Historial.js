@@ -22,7 +22,7 @@ class Historial extends React.Component {
     async componentDidMount() {
         const cookie = RecuperarCookie()
         const historial = await GETHistorial(cookie.idusuario)
-        console.log(historial)
+
         this.setState({ ...this.state, compras: historial.compras, publicaciones: historial.publicaciones })
     }
 

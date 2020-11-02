@@ -52,7 +52,7 @@ class SignupOptions extends React.Component {
             full
           >
             <Drawer.Header>
-              <Drawer.Title></Drawer.Title>
+              <Drawer.Title>Registrate</Drawer.Title>
             </Drawer.Header>
             <Drawer.Body>
               <SignUp></SignUp>

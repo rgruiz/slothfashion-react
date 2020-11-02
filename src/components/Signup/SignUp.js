@@ -52,7 +52,6 @@ class SignUp extends Component {
       <Container fluid>
         <Row className="justify-content-center align-items-center">
           <Col className='justify-self-center' xl={7} lg={8} md={9} sm={10}>
-            <h2 className='pt-4'>Registrate</h2>
             <ValidationForm onSubmit={this.handleSubmit} onErrorSubmit={this.handleErrorSubmit} className="signupForm">
               <Form>
                 <Form.Row>

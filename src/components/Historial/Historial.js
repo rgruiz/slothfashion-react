@@ -3,29 +3,53 @@ import { Row, Col, Container } from 'react-bootstrap';
 import Compras from './Compras';
 import Publicaciones from './Publicaciones.js';
 import Select from 'react-select'
+import RecuperarCookie from '../Cookies/RecuperarCookie'
+import GETHistorial from '../DB connections/GETHistorial'
 import '../../styles/Publication.css'
 
 
 class Historial extends React.Component {
+
+    state = {
+        ...this.state,
+        filter: { value: 'compras', label: 'Ver Compras' },
+    }
+
+    handleChange = (value) => {
+        this.setState({ ...this.state, filter: value })
+    }
+
+    async componentDidMount() {
+        const cookie = RecuperarCookie()
+        const historial = await GETHistorial(cookie.idusuario)
+        console.log(historial)
+        this.setState({ ...this.state, compras: historial.compras, publicaciones: historial.publicaciones })
+    }
+
     render() {
         return (
             <Container>
                 <Row>
-                    <Col xs={12}>
+                    <Col xs={12} className="ml-0 mr-0 pr-0 pl-0 mt-2">
                         <Select
                             name="filtro"
                             options={[{ value: 'compras', label: 'Ver Compras' }, { value: 'publicaciones', label: 'Ver Publicaciones' }]}
-                            className="basic-multi-select"
+                            className="basic-multi-select pl-0 pr-0 ml-0 mr-0"
                             classNamePrefix="select"
-                            value={{ value: 'compras', label: 'Ver Compras' }}
+                            onChange={this.handleChange}
+                            value={this.state.filter}
                         />
                     </Col>
-                    <Col xs={12}>
-                        <Compras />
-                    </Col>
-                    <Col xs={12}>
-                        <Publicaciones />
-                    </Col>
+                    {this.state.filter.value === 'compras' &&
+                        <Col xs={12} className='mt-1'>
+                            <Compras compras={this.state.compras} />
+                        </Col>
+                    }
+                    {this.state.filter.value === 'publicaciones' &&
+                        <Col xs={12} className='mt-1'>
+                            <Publicaciones publicaciones={this.state.publicaciones} />
+                        </Col>
+                    }
                 </Row>
             </Container>
         )

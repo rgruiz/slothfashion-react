@@ -9,9 +9,9 @@ const PUTPost = props => {
     "tags": props.tags,
     "active": active,
     //faltaria el dato de usuarioid asi que de momento se hardcodea
-    "poster": 1,
+    "poster": props.poster,
     "imagesModified": props.imagesModified,
-    "postId": 11
+    "postId": props.postId
   }
 
   var archivos = new FormData();

@@ -10,7 +10,7 @@ class EntradaPublicaciones extends React.Component {
 
   render() {
     return (
-      <Col xs={12} className='mt-2 link-container'>
+      <Col xs={12} className='mt-2 link-container mb-1'>
         <Link
           className='link-to-post'
           to={{
@@ -64,6 +64,14 @@ class EntradaPublicaciones extends React.Component {
               </Row>
             </Col>
           </Row>
+          {this.props.post.fechatransaccion === null &&
+            <Row className='justify-content-center'>
+              <Col xs={12} md={6}>
+                <Link to={{ pathname: '/edit', state: { ...this.state, postId: this.props.post.idpublicacion } }}
+                  className='btn btn-primary btn-block mt-2'>Editar</Link>
+              </Col>
+            </Row>
+          }
         </Link>
       </Col>
     )

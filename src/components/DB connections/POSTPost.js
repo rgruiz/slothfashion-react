@@ -9,7 +9,7 @@ const POSTPost = props => {
     "tags": props.tags,
     "active": active,
     //faltaria el dato de usuarioid asi que de momento se hardcodea
-    "poster": 1,
+    "poster": props.postuserId
   }
 
   var archivos = new FormData();

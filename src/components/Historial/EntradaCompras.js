@@ -3,18 +3,22 @@ import { Row, Col, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { URL_AWSFILES } from '../../constants/URL'
 import FormatDate from '../utils/FormatDate'
+import EncryptData from '../utils/EncryptData'
 import '../../styles/historial.css'
 
 class EntradaCompras extends React.Component {
 
   render() {
+    //encripta el id de la publicacion que se vera en la URL
+    const postId = EncryptData(this.props.post.publicacion)
+    const path = "/publication/"+postId
+
     return (
       <Col xs={12} className='mt-2 link-container mb-1'>
         <Link
           className='link-to-post'
           to={{
-            pathname: "/publication",
-            state: { postId: this.props.post.publicacion }
+            pathname: path
           }}>
           <Row id={this.props.post.idhistorial}>
             <Col xs={12} sm={5} md={3}>

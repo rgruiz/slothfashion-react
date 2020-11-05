@@ -2,44 +2,56 @@ import React from 'react'
 import { Row, Col, Container, Button } from 'react-bootstrap'
 import ImgPost from './ImgPost'
 import Comment from './Comment'
+import { withRouter } from "react-router";
 import DisplayTags from '../DisplayTags/DisplayTags'
 import RecuperarCookie from '../Cookies/RecuperarCookie'
 import GETPostByID from '../DB connections/GETPostByID'
 import GETMercadoPagoLink from '../DB connections/GETMercadoPagoLink'
+import DecryptData from '../utils/DecryptData'
 import '../../styles/Publication.css'
 
 class Publication extends React.Component {
 
     state = {
-        postId: this.props.postId,
+        postId: this.props.match.params.id,
         userId: 0,
     }
 
     async componentDidMount() {
-        const postData = await GETPostByID(this.state.postId)
-        this.setState({ ...this.state, post: postData })
+        try {
+            //desencripta el valor de la URL que tiene el id de la publicacion
+            const postId = DecryptData(this.state.postId)
+            this.setState({ ...this.state, postId: postId })
 
-        const cookie = RecuperarCookie()
-        if (cookie !== undefined) {
-            this.setState({ ...this.state, userId: cookie.idusuario })
-        }
+            const postData = await GETPostByID(postId)
+            this.setState({ ...this.state, post: postData })
 
-        if (postData.post.precio > 0 && this.state.userId > 0 && postData.post.estado !== 'inactivo') {
-            // idComprador vendria de la cookie --> los links de compra solo existen si el usuario esta logueado
-            const mpLinkData = {
-                idPost: postData.post.idpublicacion,
-                idBuyer: cookie.idusuario
+            const cookie = RecuperarCookie()
+            if (cookie !== undefined) {
+                this.setState({ ...this.state, userId: cookie.idusuario })
             }
 
-            const datapreferenceid = await GETMercadoPagoLink(mpLinkData)
+            if (postData.post.precio > 0 && this.state.userId > 0 && postData.post.estado !== 'inactivo') {
+                // idComprador vendria de la cookie --> los links de compra solo existen si el usuario esta logueado
+                const mpLinkData = {
+                    idPost: postData.post.idpublicacion,
+                    idBuyer: cookie.idusuario
+                }
 
-            var script = document.createElement('a')
-            var linkText = document.createTextNode("Comprar")
-            script.appendChild(linkText)
-            script.title = "Comprar"
-            script.href = datapreferenceid
-            document.body.appendChild(script)
-            this.div.appendChild(script);
+                const datapreferenceid = await GETMercadoPagoLink(mpLinkData)
+
+                var script = document.createElement('a')
+                var linkText = document.createTextNode("Comprar")
+                script.appendChild(linkText)
+                script.title = "Comprar"
+                script.href = datapreferenceid
+                document.body.appendChild(script)
+                this.div.appendChild(script);
+            }
+        }
+        catch (err) {
+            alert("La URL ingresada no es valida")
+            window.location = '/'
         }
     }
 
@@ -90,4 +102,4 @@ class Publication extends React.Component {
     }
 }
 
-export default Publication
+export default withRouter(Publication)

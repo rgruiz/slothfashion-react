@@ -3,19 +3,24 @@ import { Row, Col, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { URL_AWSFILES } from '../../constants/URL'
 import FormatDate from '../utils/FormatDate'
+import EncryptData from '../utils/EncryptData'
 import '../../styles/historial.css'
 
 class EntradaPublicaciones extends React.Component {
 
 
   render() {
+    //encripta el id de la publicacion que se vera en la URL
+    const postId = EncryptData(this.props.post.idpublicacion)
+    const path = "/publication/"+postId
+    const pathEdit = "/edit/"+postId
+
     return (
       <Col xs={12} className='mt-2 link-container mb-1'>
         <Link
           className='link-to-post'
           to={{
-            pathname: "/publication",
-            state: { postId: this.props.post.idpublicacion }
+            pathname: path
           }}>
           <Row id={this.props.post.idpublicacion}>
             <Col xs={12} sm={5} md={3}>
@@ -67,7 +72,7 @@ class EntradaPublicaciones extends React.Component {
           {this.props.post.fechatransaccion === null &&
             <Row className='justify-content-center'>
               <Col xs={12} md={6}>
-                <Link to={{ pathname: '/edit', state: { ...this.state, postId: this.props.post.idpublicacion } }}
+                <Link to={{ pathname: pathEdit }}
                   className='btn btn-primary btn-block mt-2'>Editar</Link>
               </Col>
             </Row>

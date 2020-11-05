@@ -4,7 +4,9 @@ import { Container, Col, Row, Form, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import CustomLayout from './ImageUpload'
 import { Message } from 'rsuite'
+import { withRouter } from "react-router";
 import RecuperarCookie from '../Cookies/RecuperarCookie'
+import DecryptData from '../utils/DecryptData'
 import TransformPostData from '../utils/TransformPostData'
 import POSTPost from '../DB connections/POSTPost'
 import GETPostByID from '../DB connections/GETPostByID'
@@ -13,7 +15,7 @@ import GETHasMPAcc from '../DB connections/GETHasMPAcc'
 import '../../styles/PostForm.css'
 
 
-class Home extends React.Component {
+class PostForm extends React.Component {
   constructor() {
     super();
     this.onDrop = (files) => {
@@ -34,7 +36,7 @@ class Home extends React.Component {
         postuserId: 0,
         postId: 0,
       },
-      hasMPAcc: false,
+      hasMPAcc: true,
       linkMP: "#"
     }
   }
@@ -72,13 +74,19 @@ class Home extends React.Component {
 
   async componentDidMount() {
     if (this.props.type === "edit") {
-      var post = await GETPostByID(this.props.postId)
-
+      try {
+      const postId = DecryptData(this.props.match.params.id)
+      var post = await GETPostByID(postId)
       const post_data = await TransformPostData(post)
 
       this.setState({
         ...this.state, "post_data": post_data
       })
+    }
+    catch (err) {
+      alert("No es un ID válido")
+     // window.location = '/'
+    }
 
     }
 
@@ -88,11 +96,13 @@ class Home extends React.Component {
       const hasMPAcc = await GETHasMPAcc(cookie.idusuario)
 
       if (hasMPAcc !== "exists") {
-        this.setState({ ...this.state, hasMPAcc: false, linkMP: hasMPAcc, 
-          post_data: {...this.state.post_data, postuserId: cookie.idusuario }})
+        this.setState({
+          ...this.state, hasMPAcc: false, linkMP: hasMPAcc,
+          post_data: { ...this.state.post_data, postuserId: cookie.idusuario }
+        })
       }
       else {
-        this.setState({ ...this.state, hasMPAcc: true, post_data: {...this.state.post_data, postuserId: cookie.idusuario }})
+        this.setState({ ...this.state, hasMPAcc: true, post_data: { ...this.state.post_data, postuserId: cookie.idusuario } })
       }
     }
   }
@@ -237,4 +247,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home
+export default withRouter(PostForm)

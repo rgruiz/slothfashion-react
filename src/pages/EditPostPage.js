@@ -4,7 +4,7 @@ import ChequearCookie from '../components/Cookies/ChequearCookie'
 
 class EditPostPage extends React.Component {
   render() {
-    const editPostPage = <PostForm type={"edit"} postId={this.props.location.state.postId} />
+    const editPostPage = <PostForm type={"edit"} />
     return (ChequearCookie(editPostPage, '/'));
   }
 }

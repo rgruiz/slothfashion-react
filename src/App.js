@@ -18,10 +18,10 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/newpost" component={NewPostPage} />
-          <Route exact path="/publication" component={PublicationPage} />
+          <Route exact path="/publication/:id" component={PublicationPage} />
           <Route exact path="/historial" component={HistorialPage} />
           <Route exact path="/search" component={SearchResultsPage} />
-          <Route exact path="/edit" component={EditPostPage} />
+          <Route exact path="/edit/:id" component={EditPostPage} />
           <Route exact path="/validateMPRequests" component={ValidateMPRequestsPage} />
           <Footer></Footer>
         </Switch>

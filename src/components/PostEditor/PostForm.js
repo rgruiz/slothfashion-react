@@ -73,25 +73,32 @@ class PostForm extends React.Component {
   }
 
   async componentDidMount() {
-    if (this.props.type === "edit") {
-      try {
-      const postId = DecryptData(this.props.match.params.id)
-      var post = await GETPostByID(postId)
-      const post_data = await TransformPostData(post)
-
-      this.setState({
-        ...this.state, "post_data": post_data
-      })
-    }
-    catch (err) {
-      alert("No es un ID válido")
-     // window.location = '/'
-    }
-
-    }
-
     const cookie = RecuperarCookie()
+    
     if (cookie !== undefined) {
+      if (this.props.type === "edit") {
+        try {
+          if (parseInt(this.props.match.params.user) === parseInt(cookie.idusuario)) {
+            console.log("PUTITA")
+            const postId = DecryptData(this.props.match.params.id)
+            var post = await GETPostByID(postId)
+            const post_data = await TransformPostData(post)
+
+            this.setState({
+              ...this.state, "post_data": post_data
+            })
+          }
+          else {
+            alert("El usuario no corresponde a la publicacion")
+            window.location='/historial'
+          }
+        }
+        catch (err) {
+          alert("No es un ID válido")
+          // window.location = '/'
+        }
+
+      }
 
       const hasMPAcc = await GETHasMPAcc(cookie.idusuario)
 

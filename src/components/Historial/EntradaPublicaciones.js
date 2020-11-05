@@ -13,7 +13,7 @@ class EntradaPublicaciones extends React.Component {
     //encripta el id de la publicacion que se vera en la URL
     const postId = EncryptData(this.props.post.idpublicacion)
     const path = "/publication/"+postId
-    const pathEdit = "/edit/"+postId
+    const pathEdit = "/edit/"+postId+"/"+this.props.post.poster
 
     return (
       <Col xs={12} className='mt-2 link-container mb-1'>

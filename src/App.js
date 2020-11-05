@@ -21,7 +21,7 @@ class App extends React.Component {
           <Route exact path="/publication/:id" component={PublicationPage} />
           <Route exact path="/historial" component={HistorialPage} />
           <Route exact path="/search/:tags" component={SearchResultsPage} />
-          <Route exact path="/edit/:id" component={EditPostPage} />
+          <Route exact path="/edit/:id/:user" component={EditPostPage} />
           <Route exact path="/validateMPRequests" component={ValidateMPRequestsPage} />
           <Footer></Footer>
         </Switch>

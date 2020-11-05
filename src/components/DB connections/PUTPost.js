@@ -2,8 +2,6 @@ import axios from 'axios'
 import { URL_EDITPOST } from '../../constants/URL'
 
 const PUTPost = props => {
-  console.log("PEPE")
-  console.log(props)
   const active = props.active ? 'activo' : 'inactivo'
   const data = {
     "description": props.description,
@@ -15,7 +13,7 @@ const PUTPost = props => {
     "imagesModified": props.imagesModified,
     "postId": props.postId
   }
-  
+
   var archivos = new FormData();
   if (props.file1 !== "" && props.imagesModified && props.file1 !== undefined) {
     archivos.append('file1', props.file1, props.file1.fileName);

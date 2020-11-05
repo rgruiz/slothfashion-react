@@ -46,8 +46,6 @@ async function TransformPostData(props) {
     poster: props.post.poster,
   }
 
-  console.log(salida)
-
   return salida
 
 }

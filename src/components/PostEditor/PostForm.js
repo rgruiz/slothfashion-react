@@ -73,7 +73,7 @@ class Home extends React.Component {
   async componentDidMount() {
     if (this.props.type === "edit") {
       var post = await GETPostByID(this.props.postId)
-      console.log(post)
+
       const post_data = await TransformPostData(post)
 
       this.setState({

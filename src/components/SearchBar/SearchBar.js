@@ -50,6 +50,7 @@ class SearchBar extends React.Component {
   }
 
   render() {
+    const path = '/search/'+this.state.tags
     return (
       <Row className="mr-auto">
         <Col xs={12} md={9}>
@@ -58,7 +59,7 @@ class SearchBar extends React.Component {
           />
         </Col>
         <Col xs={12} md={3}>
-          <Link to={{ pathname: '/search', state: { ...this.state, tags: this.state.tags } }}
+          <Link to={{ pathname: path, state: { ...this.state, tags: this.state.tags } }}
             className='btn btn-primary btn-block'>Buscar</Link>
         </Col>
         <Col xs={12} className="mt-1">

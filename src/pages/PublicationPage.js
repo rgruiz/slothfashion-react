@@ -5,7 +5,7 @@ class PublicationPage extends React.Component {
   render() {
     return (
         /* <Publication postId={this.props.location.state.postId}/> */
-        <Publication />
+        <Publication postId={this.props.match.params.id} />
     )
   }
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col, Container, Button } from 'react-bootstrap'
 import ImgPost from './ImgPost'
 import Comment from './Comment'
-import { withRouter } from "react-router";
+import { withRouter } from "react-router"
 import DisplayTags from '../DisplayTags/DisplayTags'
 import RecuperarCookie from '../Cookies/RecuperarCookie'
 import GETPostByID from '../DB connections/GETPostByID'
@@ -13,7 +13,7 @@ import '../../styles/Publication.css'
 class Publication extends React.Component {
 
     state = {
-        postId: this.props.match.params.id,
+        postId: this.props.postId,
         userId: 0,
     }
 

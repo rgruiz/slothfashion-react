@@ -44,6 +44,7 @@ class Publication extends React.Component {
                 var linkText = document.createTextNode("Comprar")
                 script.appendChild(linkText)
                 script.title = "Comprar"
+                script.className= "btn btn-block boton-pago btn-primary"
                 script.href = datapreferenceid
                 document.body.appendChild(script)
                 this.div.appendChild(script);
@@ -86,7 +87,7 @@ class Publication extends React.Component {
                                 </Col>
                                 {this.state.post.post.precio > 0 && this.state.userId > 0 && this.state.post.post.estado !== 'inactivo' &&
                                     <Col xs={12} className="mt-3 mb-3">
-                                        <Button className="btn-block boton-pago" ref={el => (this.div = el)}></Button>
+                                        <div ref={el => (this.div = el)}></div>
                                     </Col>
                                 }
                             </Row>

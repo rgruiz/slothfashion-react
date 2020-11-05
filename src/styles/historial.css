@@ -9,7 +9,7 @@
 
 .thumb-historial {
   max-width: 100%;
-  min-height: 10em;
+  height: 22vh;
   overflow: hidden;
   object-fit: cover;
   border-radius: .5em;

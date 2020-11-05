@@ -6,15 +6,18 @@ async function TransformPostData(props) {
     if (img !== undefined) {
       const imgURL = URL_AWSFILES + img.imagen
 
+      const ext = img.imagen.split(".")
+      const type = 'image/'+ext[0]
+
       const data = await fetch(imgURL)
         .then(async res => {
           const salida = await res.arrayBuffer()
             .then(buf => {
-              imageData = new File([buf], img.imagen, { type: 'image/jpeg' })
+              imageData = new File([buf], img.imagen, { type: type })
               return imageData
             })
           return salida
-        })
+        }).catch(() => {return imageData})
       return data
     }
     if (imageData !== undefined && imageData.length > 1) {
@@ -39,7 +42,11 @@ async function TransformPostData(props) {
     file2: await imageData(props.images[1]),
     file3: await imageData(props.images[2]),
     file4: await imageData(props.images[3]),
+    postId: props.post.idpublicacion,
+    poster: props.post.poster,
   }
+
+  console.log(salida)
 
   return salida
 

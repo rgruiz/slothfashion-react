@@ -31,6 +31,8 @@ class Home extends React.Component {
         file3: "",
         file4: "",
         imagesModified: false,
+        postuserId: 0,
+        postId: 0,
       },
       hasMPAcc: false,
       linkMP: "#"
@@ -71,7 +73,7 @@ class Home extends React.Component {
   async componentDidMount() {
     if (this.props.type === "edit") {
       var post = await GETPostByID(this.props.postId)
-
+      console.log(post)
       const post_data = await TransformPostData(post)
 
       this.setState({
@@ -79,18 +81,18 @@ class Home extends React.Component {
       })
 
     }
-    else {
-      const cookie = RecuperarCookie()
-      if (cookie !== undefined) {
 
-        const hasMPAcc = await GETHasMPAcc(cookie.idusuario)
+    const cookie = RecuperarCookie()
+    if (cookie !== undefined) {
 
-        if (hasMPAcc !== "exists") {
-          this.setState({ ...this.state, hasMPAcc: false, linkMP: hasMPAcc })
-        }
-        else {
-          this.setState({ ...this.state, hasMPAcc: true })
-        }
+      const hasMPAcc = await GETHasMPAcc(cookie.idusuario)
+
+      if (hasMPAcc !== "exists") {
+        this.setState({ ...this.state, hasMPAcc: false, linkMP: hasMPAcc, 
+          post_data: {...this.state.post_data, postuserId: cookie.idusuario }})
+      }
+      else {
+        this.setState({ ...this.state, hasMPAcc: true, post_data: {...this.state.post_data, postuserId: cookie.idusuario }})
       }
     }
   }

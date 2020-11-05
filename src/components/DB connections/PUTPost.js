@@ -2,8 +2,6 @@ import axios from 'axios'
 import { URL_EDITPOST } from '../../constants/URL'
 
 const PUTPost = props => {
-  console.log("PEPE")
-  console.log(props)
   const active = props.active ? 'activo' : 'inactivo'
   const data = {
     "description": props.description,
@@ -39,7 +37,7 @@ const PUTPost = props => {
     }
   }).then(res => {
     if (res.status === 200) {
-      alert("La publicaci√≥n fue guardada con √©xito")
+      alert("La publicación fue guardada con éxito")
       return window.location = '/historial'
     }
   })

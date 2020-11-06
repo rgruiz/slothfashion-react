@@ -25,7 +25,8 @@ class PostThumb extends React.Component {
             pathname: path
           }}>
           <Button className="btn btn-block botonthumb" variant="light">
-            <Image src={URL_AWSFILES + this.props.data.imagen} className="thumb mt-3" id={this.props.data.idpublicacion}></Image>
+            <Image src={URL_AWSFILES + this.props.data.imagen} className="thumb mt-3" crossorigin='anonymous'
+            id={this.props.data.idpublicacion}></Image>
             <Row className="text-right text-muted">
               <Col xs={12} className="timestamp">
                 {FormatDate(this.props.data.fechaposteo)}

@@ -74,12 +74,11 @@ class PostForm extends React.Component {
 
   async componentDidMount() {
     const cookie = RecuperarCookie()
-    
+
     if (cookie !== undefined) {
       if (this.props.type === "edit") {
         try {
           if (parseInt(this.props.match.params.user) === parseInt(cookie.idusuario)) {
-            console.log("PUTITA")
             const postId = DecryptData(this.props.match.params.id)
             var post = await GETPostByID(postId)
             const post_data = await TransformPostData(post)
@@ -90,7 +89,7 @@ class PostForm extends React.Component {
           }
           else {
             alert("El usuario no corresponde a la publicacion")
-            window.location='/historial'
+            window.location = '/historial'
           }
         }
         catch (err) {
@@ -222,21 +221,30 @@ class PostForm extends React.Component {
                     onChange={this.handleChangeCheck} />
                 </Form.Group> */}
                   <Row className='justify-content-center'>
-                    <Col xs={12} md={4}>
-                      <Link to='/'>
-                        <Button className="btn btn-block" variant="danger">
-                          Cancelar
+                    {this.props.type === "edit" ?
+                      <Col xs={12} md={4}>
+                        <Link to='/historial'>
+                          <Button className="btn btn-block" variant="danger">
+                            Cancelar
                     </Button>
-                      </Link>
-                    </Col>
-                    {this.state.hasMPAcc &&
+                        </Link>
+                      </Col>
+                      :
+                      <Col xs={12} md={4}>
+                        <Link to='/'>
+                          <Button className="btn btn-block" variant="danger">
+                            Cancelar
+                  </Button>
+                        </Link>
+                      </Col>
+                    }
+                    {this.state.hasMPAcc ?
                       <Col xs={12} md={4}>
                         <Button className="btn btn-block" variant="primary" type="submit">
                           Guardar
                   </Button>
                       </Col>
-                    }
-                    {!this.state.hasMPAcc &&
+                      :
                       <Col xs={12} md={4}>
                         <Button className="btn btn-block" variant="primary" type="submit" disabled>
                           Guardar

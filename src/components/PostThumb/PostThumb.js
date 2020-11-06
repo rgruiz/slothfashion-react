@@ -3,6 +3,7 @@ import { Row, Col, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import FormatDate from '../utils/FormatDate'
 import DisplayTags from '../DisplayTags/DisplayTags'
+import EncryptData from '../utils/EncryptData'
 import { URL_AWSFILES } from '../../constants/URL'
 import '../../styles/Thumbs.css'
 
@@ -13,12 +14,15 @@ class PostThumb extends React.Component {
   }
 
   render() {
+    //encripta el id de la publicacion que se vera en la URL
+    const postId = EncryptData(this.props.data.idpublicacion)
+    const path = "/publication/"+postId
+
     return (
       <Col className="fondo-thumb gradient-border">
         <Link
           to={{
-            pathname: "/publication",
-            state: { postId: this.props.data.idpublicacion }
+            pathname: path
           }}>
           <Button className="btn btn-block botonthumb" variant="light">
             <Image src={URL_AWSFILES + this.props.data.imagen} className="thumb mt-3" id={this.props.data.idpublicacion}></Image>

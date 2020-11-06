@@ -4,7 +4,9 @@ import { Container, Col, Row, Form, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import CustomLayout from './ImageUpload'
 import { Message } from 'rsuite'
+import { withRouter } from "react-router";
 import RecuperarCookie from '../Cookies/RecuperarCookie'
+import DecryptData from '../utils/DecryptData'
 import TransformPostData from '../utils/TransformPostData'
 import POSTPost from '../DB connections/POSTPost'
 import GETPostByID from '../DB connections/GETPostByID'
@@ -13,7 +15,7 @@ import GETHasMPAcc from '../DB connections/GETHasMPAcc'
 import '../../styles/PostForm.css'
 
 
-class Home extends React.Component {
+class PostForm extends React.Component {
   constructor() {
     super();
     this.onDrop = (files) => {
@@ -34,7 +36,7 @@ class Home extends React.Component {
         postuserId: 0,
         postId: 0,
       },
-      hasMPAcc: false,
+      hasMPAcc: true,
       linkMP: "#"
     }
   }
@@ -71,28 +73,42 @@ class Home extends React.Component {
   }
 
   async componentDidMount() {
-    if (this.props.type === "edit") {
-      var post = await GETPostByID(this.props.postId)
-
-      const post_data = await TransformPostData(post)
-
-      this.setState({
-        ...this.state, "post_data": post_data
-      })
-
-    }
-
     const cookie = RecuperarCookie()
+
     if (cookie !== undefined) {
+      if (this.props.type === "edit") {
+        try {
+          if (parseInt(this.props.match.params.user) === parseInt(cookie.idusuario)) {
+            const postId = DecryptData(this.props.match.params.id)
+            var post = await GETPostByID(postId)
+            const post_data = await TransformPostData(post)
+
+            this.setState({
+              ...this.state, "post_data": post_data
+            })
+          }
+          else {
+            alert("El usuario no corresponde a la publicacion")
+            window.location = '/historial'
+          }
+        }
+        catch (err) {
+          alert("No es un ID válido")
+          // window.location = '/'
+        }
+
+      }
 
       const hasMPAcc = await GETHasMPAcc(cookie.idusuario)
 
       if (hasMPAcc !== "exists") {
-        this.setState({ ...this.state, hasMPAcc: false, linkMP: hasMPAcc, 
-          post_data: {...this.state.post_data, postuserId: cookie.idusuario }})
+        this.setState({
+          ...this.state, hasMPAcc: false, linkMP: hasMPAcc,
+          post_data: { ...this.state.post_data, postuserId: cookie.idusuario }
+        })
       }
       else {
-        this.setState({ ...this.state, hasMPAcc: true, post_data: {...this.state.post_data, postuserId: cookie.idusuario }})
+        this.setState({ ...this.state, hasMPAcc: true, post_data: { ...this.state.post_data, postuserId: cookie.idusuario } })
       }
     }
   }
@@ -205,21 +221,30 @@ class Home extends React.Component {
                     onChange={this.handleChangeCheck} />
                 </Form.Group> */}
                   <Row className='justify-content-center'>
-                    <Col xs={12} md={4}>
-                      <Link to='/'>
-                        <Button className="btn btn-block" variant="danger">
-                          Cancelar
+                    {this.props.type === "edit" ?
+                      <Col xs={12} md={4}>
+                        <Link to='/historial'>
+                          <Button className="btn btn-block" variant="danger">
+                            Cancelar
                     </Button>
-                      </Link>
-                    </Col>
-                    {this.state.hasMPAcc &&
+                        </Link>
+                      </Col>
+                      :
+                      <Col xs={12} md={4}>
+                        <Link to='/'>
+                          <Button className="btn btn-block" variant="danger">
+                            Cancelar
+                  </Button>
+                        </Link>
+                      </Col>
+                    }
+                    {this.state.hasMPAcc ?
                       <Col xs={12} md={4}>
                         <Button className="btn btn-block" variant="primary" type="submit">
                           Guardar
                   </Button>
                       </Col>
-                    }
-                    {!this.state.hasMPAcc &&
+                      :
                       <Col xs={12} md={4}>
                         <Button className="btn btn-block" variant="primary" type="submit" disabled>
                           Guardar
@@ -237,4 +262,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home
+export default withRouter(PostForm)

@@ -10,7 +10,7 @@ class ImgPost extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.images !== undefined) {
+    if (this.props.images !== undefined && this.props.images.length > 0 ) {
 
       const keys = Object.keys(this.props.images)
 

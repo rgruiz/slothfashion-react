@@ -5,7 +5,7 @@ class SearchResultsPage extends React.Component {
 
   render() {
     return (
-        <SearchResults tags={this.props.location.state.tags} page={1} />
+        <SearchResults tags={this.props.match.params.tags} page={1} />
     )
   }
   

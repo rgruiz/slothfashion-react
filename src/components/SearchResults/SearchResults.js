@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Row } from 'react-bootstrap'
+import { withRouter } from "react-router";
 import PostThumbContainer from '../PostThumb/PostThumbContainer'
 
 
@@ -27,6 +28,8 @@ class SearchResults extends React.Component {
   }
 
   render() {
+    const tags = this.props.tags
+    console.log(tags)
     return (
       <>
         <Container fluid>
@@ -40,4 +43,4 @@ class SearchResults extends React.Component {
   }
 }
 
-export default SearchResults
+export default withRouter(SearchResults)

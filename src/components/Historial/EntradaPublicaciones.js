@@ -24,7 +24,7 @@ class EntradaPublicaciones extends React.Component {
           }}>
           <Row id={this.props.post.idpublicacion}>
             <Col xs={12} sm={5} md={3}>
-              <Image src={URL_AWSFILES + this.props.post.imagen}
+              <Image src={URL_AWSFILES + this.props.post.imagen} crossorigin='anonymous'
                 className="thumb-historial" id={this.props.post.imagen} />
             </Col>
             <Col xs={12} sm={7} md={9}>

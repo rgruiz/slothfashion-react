@@ -7,6 +7,7 @@ import Cookies from 'universal-cookie'
 import { cookieName } from '../../constants/Cookie'
 import RecuperarCookie from '../Cookies/RecuperarCookie'
 import 'rsuite/dist/styles/rsuite-default.css'; // or 'rsuite/dist/styles/rsuite-default.css'
+import newPost from '../PostEditor/PostForm'
 
 class Header extends React.Component {
 
@@ -53,10 +54,11 @@ class Header extends React.Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" bsPrefix="no-margin-top navbar-toggler" />
           <Navbar.Collapse id="basic-navbar-nav">
             <SearchBar onTagsChange={this.onTagsChange} />
-            <Nav className="ml-auto right-align">
-              <Nav.Link href="/historial" >Ver Historial</Nav.Link>
-              {cookie !== undefined ? <Nav.Link onClick={this.clearUserCookies}>Cerrar Sesión</Nav.Link> : <Nav.Link onClick={this.toggleDrawer}>Login</Nav.Link>}
-            </Nav>
+              <Nav className="ml-auto right-align">
+                {cookie !== undefined && <> <Nav.Link href="/newpost" >Nueva publicación</Nav.Link>
+                  <Nav.Link href="/historial" >Ver Historial</Nav.Link></>}
+                {cookie !== undefined ? <Nav.Link onClick={this.clearUserCookies}>Cerrar Sesión</Nav.Link> : <Nav.Link onClick={this.toggleDrawer}>Login</Nav.Link>}
+              </Nav>
           </Navbar.Collapse>
         </Navbar>
 
@@ -91,7 +93,7 @@ class Header extends React.Component {
               <Login></Login>
             </Drawer.Body>
           </Drawer>
-          }
+        }
       </>
     )
   }

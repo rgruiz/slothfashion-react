@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 import { URL_AWSFILES } from '../../constants/URL'
+import '../../styles/Publication.css'
 
 class ImgPost extends React.Component {
 
@@ -17,14 +18,14 @@ class ImgPost extends React.Component {
       this.setState({
         ...this.state,
         selected_image: <Image src={URL_AWSFILES + this.props.images[keys[0]].imagen} crossorigin='anonymous'
-          id={this.props.images[keys[0]].idimagen} rounded fluid />
+          id={this.props.images[keys[0]].idimagen} rounded fluid className='img-max-height'/>
       })
     }
   }
 
   changeImg(src, idimagen) {
     this.setState({...this.state, selected_image: <Image src={src}
-    id={idimagen} rounded fluid />})
+    id={idimagen} rounded fluid className='img-max-height'/>})
   }
 
   render() {

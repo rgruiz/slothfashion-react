@@ -2,6 +2,10 @@
     overflow: hidden;
 }
 
+.img-max-height {
+    max-height: 100vh;
+}
+
 .comment-container {
     height: 60vh !important;
     overflow-y: scroll;

@@ -4,7 +4,6 @@ import { URL_COMENTARIOS } from '../../constants/URL'
 const POSTComment = (props) => {
   // la contraparte esta hardcodeada en el link de compra en Publicacion -- deberia venir de la cookie
   
-
   axios.post((URL_COMENTARIOS), props, {
     method: 'POST',
     headers: {
@@ -13,7 +12,7 @@ const POSTComment = (props) => {
   }).then(res => {
     if (res.status === 200) {
       alert("¡Gracias por dejar un comentario!")
-      window.location = '/'
+      return window.location.reload()
     }
   })
     .catch(function (err) {

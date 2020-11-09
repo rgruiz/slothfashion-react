@@ -25,7 +25,7 @@ class Comment extends React.Component {
       {this.props.comments.length !== 0 &&
         <div className='comment-container'>
           <Table striped bordered hover className='comment'>
-            <tbody className='comment-container'>
+            <tbody>
               {this.props.comments.map((comment) => <tr>
                 <td>
                   <Row>

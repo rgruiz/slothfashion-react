@@ -1,16 +1,32 @@
 import React from 'react'
-import { Row, Col, Table } from 'react-bootstrap'
+import { Row, Col, Table, Form, Button } from 'react-bootstrap'
 import FormatDate from '../utils/FormatDate'
 import { Avatar } from 'rsuite'
+import POSTComment from '../DB connections/POSTComment'
 
-const Comment = props => {
-  return (
+class Comment extends React.Component {
+
+  /*handleChange = (e) => {
+    this.setState({
+      ...this.state, [e.target.name]: e.target.value 
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    //POST COMMENT
+    POSTComment(this.state.post_data)
+
+  }*/
+
+  render() {
+    return (
     <>
-      {props.comments.length !== 0 &&
+      {this.props.comments.length !== 0 &&
         <div className='comment-container'>
           <Table striped bordered hover className='comment'>
-            <tbody className='comment-container'>
-              {props.comments.map((comment) => <tr>
+            <tbody>
+              {this.props.comments.map((comment) => <tr>
                 <td>
                   <Row>
                     <Col>
@@ -36,15 +52,17 @@ const Comment = props => {
           </Table>
         </div>
       }
-      {props.comments.length === 0 &&
+      {this.props.comments.length === 0 &&
         <Row className='mt-3'>
           <Col>
             <h4>No hay comentarios para mostrar. ¡Dejanos uno!</h4>
           </Col>
         </Row>
       }
+      
     </>
   )
+}
 }
 
 export default Comment

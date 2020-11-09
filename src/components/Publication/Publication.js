@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Container, Button } from 'react-bootstrap'
+import { Row, Col, Container, Button, Form, InputGroup, FormControl } from 'react-bootstrap'
 import ImgPost from './ImgPost'
 import Comment from './Comment'
 import { withRouter } from "react-router"
@@ -9,12 +9,29 @@ import GETPostByID from '../DB connections/GETPostByID'
 import GETMercadoPagoLink from '../DB connections/GETMercadoPagoLink'
 import DecryptData from '../utils/DecryptData'
 import '../../styles/Publication.css'
+import POSTComment from '../DB connections/POSTComment'
 
 class Publication extends React.Component {
 
     state = {
         postId: this.props.postId,
         userId: 0,
+    }
+
+    handleChange = (e) => {
+        console.log(this.state)
+        this.setState({
+            ...this.state, [e.target.name]: e.target.value
+        })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        //POST COMMENT
+        const coments = { comentador: this.state.userId, comentario: this.state.comentario, publicacion: this.state.postId }
+        console.log(coments)
+        POSTComment(coments)
+
     }
 
     async componentDidMount() {
@@ -44,7 +61,7 @@ class Publication extends React.Component {
                 var linkText = document.createTextNode("Comprar")
                 script.appendChild(linkText)
                 script.title = "Comprar"
-                script.className= "btn btn-block boton-pago btn-primary"
+                script.className = "btn btn-block boton-pago btn-primary"
                 script.href = datapreferenceid
                 document.body.appendChild(script)
                 this.div.appendChild(script);
@@ -94,6 +111,34 @@ class Publication extends React.Component {
                         </Col>
                         <Col xs={12} lg={5}>
                             <Comment comments={this.state.post.comments} />
+                            <Form onSubmit={this.handleSubmit}>
+                                {/*                               <Form.Group as={Col}>
+                                    <Form.Control name="comentario" as="textarea" rows={3} required
+                                        value={this.state.comentario}
+                                        onChange={this.handleChange}
+                                    />
+                                </Form.Group>
+                                <div className='text-center'>
+                                    <Button type="submit">
+                                    </Button>
+                                </div>
+ */}
+                                <InputGroup>
+                                    <Form.Control
+                                        as="textarea" rows={3}
+                                        placeholder="Comentario..."
+                                        aria-label="Comentario..."
+                                        aria-describedby="basic-addon2"
+                                        name="comentario"
+                                        value={this.state.comentario}
+                                        onChange={this.handleChange}
+                                        maxLength="250"
+                                    />
+                                    <InputGroup.Append>
+                                        <Button variant="primary" type="submit"><i class="fa fa-send-o"></i></Button>
+                                    </InputGroup.Append>
+                                </InputGroup>
+                            </Form>
                         </Col>
                     </Row>
                 </Container>

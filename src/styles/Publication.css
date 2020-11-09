@@ -3,7 +3,7 @@
 }
 
 .comment-container {
-    height: 80vh !important;
+    height: 60vh !important;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -13,7 +13,10 @@
 }
 
 .comment-text {
+    display:block;
     font-size: 1.1em;
+    word-wrap:break-word;
+    width:150px;
 }
 
 .postDesc {

@@ -16,6 +16,10 @@ code {
   width: 200px;
 }
 
+#basic-navbar-nav {
+  flex-flow: column
+}
+
 .border-nav {
   border-top: 10px solid rgb(238, 80, 106);
 }

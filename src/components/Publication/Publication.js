@@ -111,34 +111,25 @@ class Publication extends React.Component {
                         </Col>
                         <Col xs={12} lg={5}>
                             <Comment comments={this.state.post.comments} />
-                            <Form onSubmit={this.handleSubmit}>
-                                {/*                               <Form.Group as={Col}>
-                                    <Form.Control name="comentario" as="textarea" rows={3} required
-                                        value={this.state.comentario}
-                                        onChange={this.handleChange}
-                                    />
-                                </Form.Group>
-                                <div className='text-center'>
-                                    <Button type="submit">
-                                    </Button>
-                                </div>
- */}
-                                <InputGroup>
-                                    <Form.Control
-                                        as="textarea" rows={3}
-                                        placeholder="Comentario..."
-                                        aria-label="Comentario..."
-                                        aria-describedby="basic-addon2"
-                                        name="comentario"
-                                        value={this.state.comentario}
-                                        onChange={this.handleChange}
-                                        maxLength="250"
-                                    />
-                                    <InputGroup.Append>
-                                        <Button variant="primary" type="submit"><i class="fa fa-send-o"></i></Button>
-                                    </InputGroup.Append>
-                                </InputGroup>
-                            </Form>
+                            {this.state.userId > 0 &&
+                                <Form onSubmit={this.handleSubmit}>
+                                    <InputGroup>
+                                        <Form.Control
+                                            as="textarea" rows={3}
+                                            placeholder="Comentario..."
+                                            aria-label="Comentario..."
+                                            aria-describedby="basic-addon2"
+                                            name="comentario"
+                                            value={this.state.comentario}
+                                            onChange={this.handleChange}
+                                            maxLength="250"
+                                        />
+                                        <InputGroup.Append>
+                                            <Button variant="primary" type="submit"><i class="fa fa-send-o"></i></Button>
+                                        </InputGroup.Append>
+                                    </InputGroup>
+                                </Form>
+                            }
                         </Col>
                     </Row>
                 </Container>

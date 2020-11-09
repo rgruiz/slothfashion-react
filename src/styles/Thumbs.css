@@ -2,6 +2,7 @@
 .thumb {
   max-width: 100%;
   min-height: 20em;
+  max-height: 20em;
   overflow: hidden;
   object-fit: cover;
   border-radius: .5em;

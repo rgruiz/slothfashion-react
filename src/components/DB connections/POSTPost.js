@@ -9,7 +9,7 @@ const POSTPost = props => {
     "tags": props.tags,
     "active": active,
     //faltaria el dato de usuarioid asi que de momento se hardcodea
-    "poster": 1,
+    "poster": props.postuserId
   }
 
   var archivos = new FormData();
@@ -35,13 +35,15 @@ const POSTPost = props => {
     }
   }).then(res => {
     if (res.status === 200) {
-      return alert("La publicación fue guardada con éxito")
+      alert("La publicación fue guardada con éxito")
+      return window.location = '/historial'
     }
   })
     .catch(function (err) {
 
       if (err.response) {
         alert(err.response.data)
+        Promise.reject(err.response.data)
       }
     }
     )

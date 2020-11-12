@@ -1,0 +1,26 @@
+.link-to-post {
+  color: black;
+}
+
+.link-to-post:hover {
+  color: black;
+  background: red;
+}
+
+.thumb-historial {
+  max-width: 100%;
+  height: 22vh;
+  overflow: hidden;
+  object-fit: cover;
+  border-radius: .5em;
+}
+
+.link-container {
+  padding: 1em;
+  border-radius: .5em;
+}
+
+.link-container:hover {
+  border-radius: .5em;
+  background: pink;
+}

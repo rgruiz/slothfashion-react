@@ -1,0 +1,68 @@
+/* ver min-height en otros tamaños de pantalla */
+.thumb {
+  max-width: 100%;
+  min-height: 20em;
+  max-height: 20em;
+  overflow: hidden;
+  object-fit: cover;
+  border-radius: .5em;
+}
+
+.botonthumb {
+  border-radius: 1em;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a > .botonthumb:hover {
+  text-decoration: none !important;
+  background-color: white !important;
+}
+
+.timestamp {
+  font-size: .8em;
+}
+
+.gradient-border {
+  border-radius: 1.5em;
+  margin-top: 1em;
+  padding: 0.4em 0.4em 0.5em 0.4em;
+}
+
+.gradient-border:hover {
+/*   background: linear-gradient(
+      60deg,
+      hsl(224, 85%, 66%),
+      hsl(269, 85%, 66%),
+      hsl(314, 85%, 66%),
+      hsl(359, 85%, 66%),
+      hsl(44, 85%, 66%),
+      hsl(89, 85%, 66%),
+      hsl(134, 85%, 66%),
+      hsl(179, 85%, 66%)
+    ); */
+    transition: all .3s;
+    transform: scale(1.02);
+    background: linear-gradient(
+      60deg,
+      hsl(223, 57%, 75%),
+      hsl(314, 82%, 82%),
+      hsl(177, 82%, 82%),
+      hsl(0, 0%, 100%),
+      hsl(223, 57%, 75%),
+      hsl(314, 82%, 82%),
+      hsl(177, 82%, 82%),
+      hsl(0, 0%, 100%)
+    );
+    background-size: 200% 200%;
+    background-position: 0 50%;
+    animation: moveGradient 4s alternate infinite;
+}
+
+@keyframes moveGradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}

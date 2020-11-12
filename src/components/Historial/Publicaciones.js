@@ -1,37 +1,26 @@
-import React from 'react';
-import { Row, Table } from 'react-bootstrap';
-import Publication from '../Publication/Publication';
+import React from 'react'
+import { Row, Col } from 'react-bootstrap'
+import EntradaPublicaciones from './EntradaPublicaciones'
 
 class Publicaciones extends React.Component {
 
   render() {
-    return (
-      <Row>
-        <h3 className = 'justify-content-center'>Publicaciones</h3>
-          <Table striped bordered hover  className = 'comment'>
-            <tbody>
-              <tr>
-                <td>Publicacion</td>
-              </tr>
-              <tr>
-                <td>Publicacion</td>
-              </tr>
-                <tr>
-                <td>Publicacion</td>
-              </tr>
-                <tr>
-                <td>Publicacion</td>
-              </tr>
-                <tr>
-                <td>Publicacion</td>
-              </tr>
-                <tr>
-                <td>Publicacion</td>
-              </tr>
-            </tbody>
-          </Table>
+    if (this.props.publicaciones !== undefined && this.props.publicaciones.length > 0) {
+      return (
+        <Row>
+          {this.props.publicaciones.map((publicacion) => {
+            return <EntradaPublicaciones post={publicacion} />
+          })}
+        </Row>
+      )
+    }
+    else {
+      return <Row>
+        <Col>
+          <h3>Todavía no tenes publicaciones</h3>
+        </Col>
       </Row>
-    )
+    }
   }
 }
 

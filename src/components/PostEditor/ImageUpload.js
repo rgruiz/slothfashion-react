@@ -15,32 +15,54 @@ const Layout = ({ input, previews, dropzoneProps, files }) => {
   )
 }
 
-const CustomLayout = (props) => {
+
+class CustomLayout extends React.Component {
   /* const getUploadParams = () => ({ url: 'http://localhost:5000/add', header: 'Access-Control-Allow-Origin'}) //a cambiar --> que el submit se bloquee?
  */
 
-  const handleChangeStatus = ({ meta, file }, status) => {
-    //a ser modificado usando el status. deberia modificar los datos de la lista en postform
-    if (status === 'done') {
-      props.addFiles(file, props.pos);
-    }
-    else 
-    if (status === 'removed') {
-      props.removeFiles(file, props.pos);
-    }
-    console.log(status, meta, file);
+  state = {
+    file: ""
   }
 
-  return (
-    <Dropzone
-      /* getUploadParams={getUploadParams} */
-      LayoutComponent={Layout}
-      inputContent="Arrastrá la foto acá"
-      accept="image/*"
-      onChangeStatus={handleChangeStatus}
-      maxFiles={1}
-    />
-  )
+  handleChangeStatus = ({ meta, file }, status) => {
+    //a ser modificado usando el status. deberia modificar los datos de la lista en postform
+    if (status === 'done') {
+      this.props.addFiles(file, this.props.pos);
+      this.setState({ file: file })
+    }
+    else
+      if (status === 'removed') {
+        this.props.removeFiles(this.props.pos);
+        this.setState({ file: '' })
+      }
+  }
+
+  componentDidMount() {
+    const file = this.props.file === undefined ? '' : this.props.file
+    this.setState({ file: file })
+  }
+
+  async componentDidUpdate(prevProps) {
+    if (prevProps.file !== this.props.file) {
+      const file = this.props.file === undefined ? '' : this.props.file
+      this.setState({ file: file })
+    }
+  }
+
+  render() {
+    return (
+      <Dropzone
+        /* getUploadParams={getUploadParams} */
+        LayoutComponent={Layout}
+        inputContent="Arrastrá la foto acá"
+        accept="image/*"
+        onChangeStatus={this.handleChangeStatus}
+        maxFiles={1}
+        initialFiles={[this.state.file]}
+        canRemove={true}
+      />
+    )
+  }
 }
 
 export default CustomLayout

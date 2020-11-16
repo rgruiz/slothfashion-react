@@ -10,7 +10,7 @@ const GETHistorial = (props) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + props.token,
+        'Authorization': props.token,
       }
     }).then(res => {
       if (res.status === 200) {

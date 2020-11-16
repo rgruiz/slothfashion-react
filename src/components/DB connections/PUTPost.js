@@ -33,7 +33,7 @@ const PUTPost = props => {
     method: 'PATCH',
     headers: {
       'Content-Type': 'multipart/form-data',
-      'access-token': props.token,
+      'Authorization': 'Bearer ' + props.token,
     }
   }).then(res => {
     if (res.status === 200) {

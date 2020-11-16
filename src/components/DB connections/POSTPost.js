@@ -31,7 +31,7 @@ const POSTPost = props => {
     method: 'POST',
     headers: {
       'Content-Type': 'multipart/form-data',
-      'access-token': props.token,
+      'Authorization': 'Bearer ' + props.token,
     }
   }).then(res => {
     if (res.status === 200) {

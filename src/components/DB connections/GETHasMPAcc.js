@@ -11,7 +11,7 @@ const GETHasMPAcc = props => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'access-token': props.token,
+      'Authorization': 'Bearer ' + props.token,
     }
   })
     .then(function (res) {

@@ -8,7 +8,6 @@ const POSTPost = props => {
     "price": props.price,
     "tags": props.tags,
     "active": active,
-    //faltaria el dato de usuarioid asi que de momento se hardcodea
     "poster": props.postuserId
   }
 
@@ -32,6 +31,7 @@ const POSTPost = props => {
     method: 'POST',
     headers: {
       'Content-Type': 'multipart/form-data',
+      'access-token': props.token,
     }
   }).then(res => {
     if (res.status === 200) {

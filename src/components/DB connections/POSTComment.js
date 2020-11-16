@@ -2,12 +2,12 @@ import axios from 'axios'
 import { URL_COMENTARIOS } from '../../constants/URL'
 
 const POSTComment = (props) => {
-  // la contraparte esta hardcodeada en el link de compra en Publicacion -- deberia venir de la cookie
-  
-  axios.post((URL_COMENTARIOS), props, {
+ 
+  axios.post((URL_COMENTARIOS), props.comment, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'access-token': props.token,
     }
   }).then(res => {
     if (res.status === 200) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, Row, Col } from 'react-bootstrap'
+import { Navbar, Nav, Col } from 'react-bootstrap'
 import { Drawer } from 'rsuite'
 import Login from '../Login/Login'
 import SearchBar from '../SearchBar/SearchBar'

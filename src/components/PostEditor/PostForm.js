@@ -99,16 +99,16 @@ class PostForm extends React.Component {
 
       }
 
-      const hasMPAcc = await GETHasMPAcc(cookie.idusuario)
+      const hasMPAcc = await GETHasMPAcc(cookie)
 
       if (hasMPAcc !== "exists") {
         this.setState({
           ...this.state, hasMPAcc: false, linkMP: hasMPAcc,
-          post_data: { ...this.state.post_data, postuserId: cookie.idusuario }
+          post_data: { ...this.state.post_data, postuserId: cookie.idusuario, token: cookie.token }
         })
       }
       else {
-        this.setState({ ...this.state, hasMPAcc: true, post_data: { ...this.state.post_data, postuserId: cookie.idusuario } })
+        this.setState({ ...this.state, hasMPAcc: true, post_data: { ...this.state.post_data, postuserId: cookie.idusuario, token: cookie.token } })
       }
     }
   }

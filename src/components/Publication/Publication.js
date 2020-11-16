@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Container, Button, Form, InputGroup, FormControl } from 'react-bootstrap'
+import { Row, Col, Container, Button, Form, InputGroup } from 'react-bootstrap'
 import ImgPost from './ImgPost'
 import Comment from './Comment'
 import { withRouter } from "react-router"
@@ -8,8 +8,8 @@ import RecuperarCookie from '../Cookies/RecuperarCookie'
 import GETPostByID from '../DB connections/GETPostByID'
 import GETMercadoPagoLink from '../DB connections/GETMercadoPagoLink'
 import DecryptData from '../utils/DecryptData'
-import '../../styles/Publication.css'
 import POSTComment from '../DB connections/POSTComment'
+import '../../styles/Publication.css'
 
 class Publication extends React.Component {
 
@@ -28,10 +28,16 @@ class Publication extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         //POST COMMENT
-        const coments = { comentador: this.state.userId, comentario: this.state.comentario, publicacion: this.state.postId }
-        console.log(coments)
-        POSTComment(coments)
+        const tokenAndComment = {
+            token: this.state.token,
+            comment: {
+                comentador: this.state.userId,
+                comentario: this.state.comentario,
+                publicacion: this.state.postId,
+            }
+        }
 
+        POSTComment(tokenAndComment)
     }
 
     async componentDidMount() {
@@ -45,17 +51,19 @@ class Publication extends React.Component {
 
             const cookie = RecuperarCookie()
             if (cookie !== undefined) {
-                this.setState({ ...this.state, userId: cookie.idusuario })
+                this.setState({ ...this.state, userId: cookie.idusuario, token: cookie.token })
             }
 
             if (postData.post.precio > 0 && this.state.userId > 0 && postData.post.estado !== 'inactivo') {
                 // idComprador vendria de la cookie --> los links de compra solo existen si el usuario esta logueado
-                const mpLinkData = {
-                    idPost: postData.post.idpublicacion,
-                    idBuyer: cookie.idusuario
+                const tokenAndMPLink = {
+                    token: cookie.token,
+                    mpLinkData: {
+                        idPost: postData.post.idpublicacion,
+                        idBuyer: cookie.idusuario
+                    }
                 }
-
-                const datapreferenceid = await GETMercadoPagoLink(mpLinkData)
+                const datapreferenceid = await GETMercadoPagoLink(tokenAndMPLink)
 
                 var script = document.createElement('a')
                 var linkText = document.createTextNode("Comprar")

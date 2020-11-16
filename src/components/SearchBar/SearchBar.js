@@ -1,6 +1,6 @@
 import React from 'react'
 import AsyncSelect from 'react-select/async'
-import { Row, Col, Button, Container } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import FilterTags from '../DB connections/FilterTags'
 import TagsPopulares from '../SearchBar/TagsPopulares'
@@ -26,7 +26,7 @@ class SearchBar extends React.Component {
       if (tags !== []) {
         tags.map((tag) => {
           const t = { value: tag.etiqueta, label: tag.etiqueta }
-          tagArray.push(t)
+          return tagArray.push(t)
         })
       }
 
@@ -39,10 +39,10 @@ class SearchBar extends React.Component {
     if (tagslist !== null) {
       tagslist.map((tag) => {
         if (tags === "") {
-          tags += tag.value
+          return tags += tag.value
         }
         else {
-          tags += " " + tag.value
+          return tags += " " + tag.value
         }
       })
     }

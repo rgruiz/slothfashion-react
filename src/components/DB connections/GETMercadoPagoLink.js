@@ -1,12 +1,13 @@
 import axios from 'axios'
 import { URL_MERCADOPAGO } from '../../constants/URL'
 
-const GETMercadoPagoLink = props => {
+const GETMercadoPagoLink = (props) => {
 
-  const salida = axios.post((URL_MERCADOPAGO), props, {
+  const salida = axios.post((URL_MERCADOPAGO), props.mpLinkData, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': props.token,
     }
   })
     .then(function (res) {

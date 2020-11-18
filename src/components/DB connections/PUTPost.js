@@ -8,7 +8,6 @@ const PUTPost = props => {
     "price": props.price,
     "tags": props.tags,
     "active": active,
-    //faltaria el dato de usuarioid asi que de momento se hardcodea
     "poster": props.poster,
     "imagesModified": props.imagesModified,
     "postId": props.postId
@@ -34,6 +33,7 @@ const PUTPost = props => {
     method: 'PATCH',
     headers: {
       'Content-Type': 'multipart/form-data',
+      'Authorization': props.token,
     }
   }).then(res => {
     if (res.status === 200) {

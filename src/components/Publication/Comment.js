@@ -1,8 +1,7 @@
 import React from 'react'
-import { Row, Col, Table, Form, Button } from 'react-bootstrap'
+import { Row, Col, Table } from 'react-bootstrap'
 import FormatDate from '../utils/FormatDate'
 import { Avatar } from 'rsuite'
-import POSTComment from '../DB connections/POSTComment'
 
 class Comment extends React.Component {
 

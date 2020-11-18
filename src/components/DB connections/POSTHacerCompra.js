@@ -2,7 +2,6 @@ import axios from 'axios'
 import { URL_HACERCOMPRA } from '../../constants/URL'
 
 const POSTHacerCompra = (props) => {
-  // la contraparte esta hardcodeada en el link de compra en Publicacion -- deberia venir de la cookie
 
   axios.post((URL_HACERCOMPRA), props, {
     method: 'POST',

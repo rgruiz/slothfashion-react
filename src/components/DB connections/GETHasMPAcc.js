@@ -4,13 +4,14 @@ import { URL_MPCHECK } from '../../constants/URL'
 const GETHasMPAcc = props => {
 
   const data = {
-    idUser: props,
+    idUser: props.idusuario,
   }
 
   const salida = axios.post((URL_MPCHECK), data, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': props.token,
     }
   })
     .then(function (res) {

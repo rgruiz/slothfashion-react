@@ -1,5 +1,4 @@
 import React from 'react'
-import { Container, Col, Row, Button } from 'react-bootstrap'
 import GETPublication from '../DB connections/GETPublication'
 import PostThumbHome from '../PostThumb/PostThumbHome'
 import Slider from './Slider'

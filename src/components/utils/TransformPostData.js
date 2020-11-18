@@ -7,7 +7,7 @@ async function TransformPostData(props) {
       const imgURL = URL_AWSFILES + img.imagen
 
       const ext = img.imagen.split(".")
-      const type = 'image/'+ext[0]
+      const type = 'image/'+ext[1]
 
       const data = await fetch(imgURL)
         .then(async res => {
